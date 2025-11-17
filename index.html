@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini-App Hormonas Veterinarias</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Hormonas en Fisiología Animal</h1>
+    <p>Mini-app de estudio para Medicina Veterinaria</p>
+  </header>
+
+  <section class="filtros">
+    <label>
+      Sistema:
+      <select id="filtro-sistema">
+        <option value="todos">Todos</option>
+        <option value="Digestivo">Digestivo</option>
+        <option value="Respiratorio/Cardíaco">Respiratorio/Cardíaco</option>
+        <option value="Cardíaco/Circulatorio">Cardíaco/Circulatorio</option>
+        <option value="Nervioso/Neuroendocrino">Nervioso/Neuroendocrino</option>
+        <option value="Renal">Renal</option>
+        <option value="Renal/Metabólico">Renal/Metabólico</option>
+        <option value="Reproductivo">Reproductivo</option>
+        <option value="Endocrino/Metabólico">Endocrino/Metabólico</option>
+        <option value="Inmunológico">Inmunológico</option>
+        <option value="Óseo/Piel">Óseo/Piel</option>
+      </select>
+    </label>
+
+    <label>
+      Buscar:
+      <input 
+        type="text" 
+        id="buscador" 
+        placeholder="Ej: T4, GH, progesterona..."
+      />
+    </label>
+  </section>
+
+  <main id="contenedor-hormonas"></main>
+
+  <footer>
+    <small>Mini-app educativa para estudiantes de Veterinaria 🐄🐕🐈</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
