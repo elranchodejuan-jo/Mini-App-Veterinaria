@@ -62,27 +62,36 @@ body {
 }
 
 /* Botón hamburguesa */
+/* Botón hamburguesa REAL */
 .btn-menu {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.7);
+  width: 40px;
+  height: 40px;
   background: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  border: none;              /* NO círculo */
   padding: 0;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;        /* Alineación precisa */
+  gap: 6px;                   /* SEPARA las rayas */
 }
 
+/* Las 3 rayitas */
 .btn-menu span {
-  display: block;
-  width: 16px;
-  height: 2px;
-  background: #fff;
-  border-radius: 999px;
-  margin: 2px 0;
+  width: 28px;
+  height: 3px;
+  background-color: var(--text-main); /* Cambia con modo oscuro/claro */
+  border-radius: 4px;
+  transition: 0.2s ease;
 }
+
+/* Modo oscuro */
+body.dark .btn-menu span {
+  background-color: #fff;
+}
+
 
 /* Menú desplegable */
 .panel-menu {
