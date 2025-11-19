@@ -1,7 +1,6 @@
 // =========================
 // BASE DE DATOS DE HORMONAS
 // =========================
-
 const hormonas = [
   // ===== DIGESTIVO =====
   {
@@ -498,14 +497,6 @@ const hormonas = [
 // =========================
 // BASE DE DATOS DE FÁRMACOS
 // =========================
-// Nota: dosis y concentraciones orientadas a estudio, NO sustituyen vademécum oficial.
-
-// Cada entrada:
-// grupoClave: para el filtro por grupo grande
-// grupo: texto que se muestra (incluye subfamilia)
-// nombre: fármaco principal
-// dosisEspecies: solo en algunos, para usar en calculadora
-
 const farmacos = [
   // ========== ANTIMICROBIANOS ==========
   {
@@ -651,41 +642,11 @@ const farmacos = [
     retiro: "Respetar tiempos específicos de cada presentación en bovinos, porcinos y aves.",
     notas: "Evitar uso indiscriminado por resistencia bacteriana.",
     dosisEspecies: {
-      perro: {
-        vias: ["VO", "SC"],
-        mgKg: 5,
-        concMgMl: 50,
-        frecuencia: "cada 24 h",
-        dias: "5–7 días"
-      },
-      gato: {
-        vias: ["VO"],
-        mgKg: 5,
-        concMgMl: 25,
-        frecuencia: "cada 24 h",
-        dias: "5–7 días"
-      },
-      bovino: {
-        vias: ["SC", "IM"],
-        mgKg: 2.5,
-        concMgMl: 100,
-        frecuencia: "cada 24 h",
-        dias: "3–5 días"
-      },
-      porcino: {
-        vias: ["IM"],
-        mgKg: 2.5,
-        concMgMl: 100,
-        frecuencia: "cada 24 h",
-        dias: "3–5 días"
-      },
-      aves: {
-        vias: ["VO"],
-        mgKg: 10,
-        concMgMl: 100,
-        frecuencia: "en agua de bebida, según consumo",
-        dias: "3–5 días"
-      }
+      perro: { vias: ["VO", "SC"], mgKg: 5, concMgMl: 50, frecuencia: "cada 24 h", dias: "5–7 días" },
+      gato:  { vias: ["VO"],       mgKg: 5, concMgMl: 25, frecuencia: "cada 24 h", dias: "5–7 días" },
+      bovino:{ vias: ["SC","IM"],  mgKg: 2.5, concMgMl: 100, frecuencia: "cada 24 h", dias: "3–5 días" },
+      porcino:{vias: ["IM"],       mgKg: 2.5, concMgMl: 100, frecuencia: "cada 24 h", dias: "3–5 días" },
+      aves:  { vias: ["VO"],       mgKg: 10, concMgMl: 100, frecuencia: "en agua de bebida, según consumo", dias: "3–5 días" }
     }
   },
   {
@@ -755,48 +716,12 @@ const farmacos = [
     retiro: "Tiempos de retiro prolongados en carne y leche según etiqueta.",
     notas: "No usar en gatos con formulaciones para grandes animales.",
     dosisEspecies: {
-      bovino: {
-        vias: ["SC"],
-        mgKg: 0.2,
-        concMgMl: 10,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      equino: {
-        vias: ["VO"],
-        mgKg: 0.2,
-        concMgMl: 10,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      ovino: {
-        vias: ["SC"],
-        mgKg: 0.2,
-        concMgMl: 10,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      caprino: {
-        vias: ["SC"],
-        mgKg: 0.2,
-        concMgMl: 10,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      porcino: {
-        vias: ["IM"],
-        mgKg: 0.3,
-        concMgMl: 10,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      perro: {
-        vias: ["SC"],
-        mgKg: 0.2,
-        concMgMl: 1,
-        frecuencia: "según protocolo",
-        dias: "variable"
-      }
+      bovino: { vias: ["SC"], mgKg: 0.2, concMgMl: 10, frecuencia: "dosis única", dias: "una sola aplicación" },
+      equino: { vias: ["VO"], mgKg: 0.2, concMgMl: 10, frecuencia: "dosis única", dias: "una sola aplicación" },
+      ovino:  { vias: ["SC"], mgKg: 0.2, concMgMl: 10, frecuencia: "dosis única", dias: "una sola aplicación" },
+      caprino:{ vias: ["SC"], mgKg: 0.2, concMgMl: 10, frecuencia: "dosis única", dias: "una sola aplicación" },
+      porcino:{ vias: ["IM"], mgKg: 0.3, concMgMl: 10, frecuencia: "dosis única", dias: "una sola aplicación" },
+      perro:  { vias: ["SC"], mgKg: 0.2, concMgMl: 1,  frecuencia: "según protocolo", dias: "variable" }
     }
   },
   {
@@ -879,27 +804,9 @@ const farmacos = [
     retiro: "Obligatorio en bovinos de acuerdo a producto.",
     notas: "Controlar función renal en tratamientos prolongados.",
     dosisEspecies: {
-      perro: {
-        vias: ["VO", "SC"],
-        mgKg: 0.2,
-        concMgMl: 5,
-        frecuencia: "dosis inicial, luego 0,1 mg/kg cada 24 h",
-        dias: "3–5 días"
-      },
-      gato: {
-        vias: ["SC"],
-        mgKg: 0.3,
-        concMgMl: 5,
-        frecuencia: "dosis única",
-        dias: "una sola aplicación"
-      },
-      bovino: {
-        vias: ["SC", "IV"],
-        mgKg: 0.5,
-        concMgMl: 20,
-        frecuencia: "una vez al día",
-        dias: "1–3 días"
-      }
+      perro: { vias: ["VO","SC"], mgKg: 0.2, concMgMl: 5,  frecuencia: "dosis inicial, luego 0,1 mg/kg cada 24 h", dias: "3–5 días" },
+      gato:  { vias: ["SC"],      mgKg: 0.3, concMgMl: 5,  frecuencia: "dosis única",                                   dias: "una sola aplicación" },
+      bovino:{ vias: ["SC","IV"], mgKg: 0.5, concMgMl: 20, frecuencia: "una vez al día",                               dias: "1–3 días" }
     }
   },
   {
@@ -982,34 +889,10 @@ const farmacos = [
     retiro: "En animales de consumo, seguir recomendaciones específicas de cada país.",
     notas: "Produce anestesia disociativa.",
     dosisEspecies: {
-      perro: {
-        vias: ["IV", "IM"],
-        mgKg: 5,
-        concMgMl: 50,
-        frecuencia: "dosis única en inducción",
-        dias: "una sola aplicación"
-      },
-      gato: {
-        vias: ["IM"],
-        mgKg: 10,
-        concMgMl: 100,
-        frecuencia: "dosis única en inducción",
-        dias: "una sola aplicación"
-      },
-      equino: {
-        vias: ["IV"],
-        mgKg: 2.2,
-        concMgMl: 100,
-        frecuencia: "dosis única en inducción",
-        dias: "una sola aplicación"
-      },
-      bovino: {
-        vias: ["IV"],
-        mgKg: 2,
-        concMgMl: 100,
-        frecuencia: "dosis única en inducción",
-        dias: "una sola aplicación"
-      }
+      perro:  { vias: ["IV","IM"], mgKg: 5,   concMgMl: 50,  frecuencia: "dosis única en inducción", dias: "una sola aplicación" },
+      gato:   { vias: ["IM"],      mgKg: 10,  concMgMl: 100, frecuencia: "dosis única en inducción", dias: "una sola aplicación" },
+      equino: { vias: ["IV"],      mgKg: 2.2, concMgMl: 100, frecuencia: "dosis única en inducción", dias: "una sola aplicación" },
+      bovino: { vias: ["IV"],      mgKg: 2,   concMgMl: 100, frecuencia: "dosis única en inducción", dias: "una sola aplicación" }
     }
   },
   {
@@ -1401,25 +1284,123 @@ const farmacos = [
   }
 ];
 
+/* =========================================================
+   CATTLE · app.js (reemplazo total · modo oscuro fijo)
+   ========================================================= */
 
-// =========================
-// LÓGICA DE FILTRO Y RENDER
-// =========================
-// Añadimos un campo especies por defecto en hormonas si no existe
-hormonas.forEach((h) => {
-  if (!h.especies) {
-    h.especies = ["multiespecie"];
+console.clear();
+console.log("✅ app.js cargado");
+window.addEventListener("error", e => console.error("❌ ERROR JS:", e.message));
+
+/* =========================================================
+   Helpers de normalización (acentos, mayúsculas, espacios)
+   ========================================================= */
+const normStr = (x) => (x ?? "").toString().trim();
+const normSearch = (x) =>
+  normStr(x)
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")   // quita tildes
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+
+const includesNorm = (haystack, needle) =>
+  normSearch(haystack).includes(normSearch(needle));
+
+/* =========================================================
+   Dedupe y normalización de HORMONAS
+   ========================================================= */
+function scoreObj(o){
+  const keys = ["origen","funcion","patologia","secundarias","variaciones","farmaco"];
+  return keys.reduce((s,k)=> s + normStr(o[k]).length, 0);
+}
+function normalizaHormona(h){
+  const n = { ...h };
+  // Alias por si la data viene con tildes raras en claves
+  n.sistema      = n.sistema ?? n["sistéma"] ?? n["sístema"];
+  n.nombre       = n.nombre  ?? n["nómbre"];
+  n.sigla        = n.sigla   ?? n["sígla"];
+  n.origen       = n.origen  ?? n["orígen"];
+  n.funcion      = n.funcion ?? n["función"];
+  n.patologia    = n.patologia ?? n["patología"];
+  n.secundarias  = n.secundarias ?? n["funciones_secundarias"] ?? n["secundárias"];
+  n.variaciones  = n.variaciones ?? n["variaciónes"];
+  n.farmaco      = n.farmaco ?? n["fármaco"];
+  // Especies
+  n.especies = Array.isArray(n.especies) ? n.especies : (n.especies ? [n.especies] : ["multiespecie"]);
+  n.especies = n.especies.map(e => normSearch(e));
+  // Canoniza el nombre de sistema para comparaciones exactas
+  n.sistema = canonSistema(n.sistema);
+  return n;
+}
+
+// Canonizador de “Sistema”
+function canonSistema(s){
+  const t = normSearch(s);
+  if (t.startsWith("digestivo")) return "Digestivo";
+  if (t.startsWith("respiratorio/cardiaco")) return "Respiratorio/Cardíaco";
+  if (t.startsWith("cardiaco/circulatorio")) return "Cardíaco/Circulatorio";
+  if (t.startsWith("nervioso/neuroendocrino")) return "Nervioso/Neuroendocrino";
+  if (t.startsWith("renal/metabolico")) return "Renal/Metabólico";
+  if (t === "renal") return "Renal";
+  if (t.startsWith("reproductivo")) return "Reproductivo";
+  if (t.startsWith("endocrino/metabolico")) return "Endocrino/Metabólico";
+  if (t.startsWith("inmunologico")) return "Inmunológico";
+  if (t.startsWith("oseo/piel")) return "Óseo/Piel";
+  return s || "";
+}
+
+const RAW_HORMONAS = (typeof hormonas !== "undefined" && Array.isArray(hormonas)) ? hormonas : [];
+const NORM_HORMONAS = RAW_HORMONAS.map(normalizaHormona);
+
+const HORMONAS = (() => {
+  const byKey = new Map();
+  for (const h of NORM_HORMONAS){
+    const key = `${normSearch(h.sigla)}|${normSearch(h.nombre)}`;
+    const prev = byKey.get(key);
+    if (!prev){ byKey.set(key, h); }
+    else{
+      const pick = scoreObj(h) > scoreObj(prev) ? h : prev;
+      byKey.set(key, pick);
+      console.warn("🔁 Duplicado (guarda más completo):", h.nombre || h.sigla);
+    }
   }
+  return Array.from(byKey.values());
+})();
+
+/* =========================================================
+   Normalización de FÁRMACOS (grupoClave + especies)
+   ========================================================= */
+const RAW_FARMACOS = (typeof farmacos !== "undefined" && Array.isArray(farmacos)) ? farmacos : [];
+
+function canonGrupo(grupoRaw){
+  const g = normSearch(grupoRaw).split("–")[0].trim();
+  if (g === "cardiologico" || g === "cardiologicos") return "cardio";
+  if (g === "a.i.n.e" || g === "aine" || g === "aines") return "aine";
+  if (g === "neurologicos") return "neuro";
+  if (g === "anestesico" || g === "anestesicos" || g.includes("sedant")) return "anestesico";
+  if (g === "antimicrobiano" || g === "antimicrobianos") return "antimicrobiano";
+  if (g === "antiparasitario" || g === "antiparasitarios") return "antiparasitario";
+  if (g.includes("gastric")) return "gastrico";
+  if (g.includes("hormona")) return "hormona";
+  return "otros";
+}
+const FARMACOS = RAW_FARMACOS.map(f => {
+  const x = { ...f };
+  x.grupoClave = canonGrupo(x.grupo || "");
+  x.especies = Array.isArray(x.especies) ? x.especies.map(e => normSearch(e)) : [];
+  return x;
 });
 
-// ========= DOM =========
+/* =========================================================
+   DOM
+   ========================================================= */
 const filtroSistema = document.getElementById("filtro-sistema");
 const filtroEspecie = document.getElementById("filtro-especie");
-const buscador = document.getElementById("buscador");
+const buscador      = document.getElementById("buscador");
 
-const filtroGrupoFarmaco = document.getElementById("filtro-grupo-farmaco");
+const filtroGrupoFarmaco   = document.getElementById("filtro-grupo-farmaco");
 const filtroEspecieFarmaco = document.getElementById("filtro-especie-farmaco");
-const buscadorFarmaco = document.getElementById("buscador-farmaco");
+const buscadorFarmaco      = document.getElementById("buscador-farmaco");
 
 const contHormonas = document.getElementById("contenedor-hormonas");
 const contFarmacos = document.getElementById("contenedor-farmacos");
@@ -1427,150 +1408,234 @@ const contFarmacos = document.getElementById("contenedor-farmacos");
 const filtrosHormonasSec = document.getElementById("filtros-hormonas");
 const filtrosFarmacosSec = document.getElementById("filtros-farmacos");
 
-const toggleTema = document.getElementById("toggle-tema");
-const btnMenu = document.getElementById("btn-menu");
-const panelMenu = document.getElementById("panel-menu");
-const itemsMenu = document.querySelectorAll(".item-menu");
+const toggleTema = document.getElementById("toggle-tema"); // oculto por CSS (dark fijo)
+const btnMenu    = document.getElementById("btn-menu");
+const sideMenu   = document.getElementById("side-menu");
 
-// Calculadora de fármacos
-const calcPanel = document.getElementById("calc-farmaco");
+const panelMenu  = document.getElementById("panel-menu");
+const itemsMenu  = document.querySelectorAll(".item-menu");
+
+const homeGrid   = document.getElementById("home-grid");
+
+/* Bottom sheet */
+const sheet         = document.getElementById("sheet");
+const sheetBackdrop = sheet ? sheet.querySelector(".sheet__backdrop") : null;
+const sheetTitle    = sheet ? sheet.querySelector("#sheet-title") : null;
+const sheetContent  = sheet ? sheet.querySelector("#sheet-content") : null;
+const sheetClose    = sheet ? sheet.querySelector(".sheet__close") : null;
+
+/* Calculadora */
+const calcPanel      = document.getElementById("calc-farmaco");
 const selFarmacoCalc = document.getElementById("calc-farmaco-select");
 const selEspecieCalc = document.getElementById("calc-especie");
-const selViaCalc = document.getElementById("calc-via");
-const inputPesoCalc = document.getElementById("calc-peso");
-const btnCalcular = document.getElementById("btn-calcular");
-const resultadoCalc = document.getElementById("calc-resultado");
+const selViaCalc     = document.getElementById("calc-via");
+const inputPesoCalc  = document.getElementById("calc-peso");
+const btnCalcular    = document.getElementById("btn-calcular");
+const resultadoCalc  = document.getElementById("calc-resultado");
 
-// Cuando hago clic en "Usar en calculadora" dentro de una tarjeta
-contFarmacos.addEventListener("click", (ev) => {
-  const boton = ev.target.closest(".btn-desde-card");
-  if (!boton) return; // si no es el botón, ignorar
+/* =========================================================
+   Estado y utilidades UI
+   ========================================================= */
+let moduloActual = localStorage.getItem("modulo-actual") || "home";
+const show = el => el && el.classList.remove("oculto");
+const hide = el => el && el.classList.add("oculto");
 
-  const card = boton.closest(".card-farmaco");
-  if (!card) return;
+/* Botón “← Inicio” en cada barra de filtros */
+function ensureBackButton(container){
+  if (!container) return null;
+  let b = container.querySelector(".btn-inicio");
+  if (!b){
+    b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn-inicio";
+    b.textContent = "← Inicio";
+    container.prepend(b);
+  }
+  b.onclick = () => cambiarModulo("home");
+  return b;
+}
 
-  const idx = card.dataset.index;
-  if (idx === undefined) return;
-
-  const f = farmacos[parseInt(idx, 10)];
-  if (!f) return;
-
-  // 1. Seleccionar fármaco en el select de la calculadora
-  selFarmacoCalc.value = idx;
-  selFarmacoCalc.dispatchEvent(new Event("change"));
-
-  // 2. Si solo hay una especie con dosis configurada, seleccionarla
-  if (f.dosisEspecies) {
-    const especiesCalc = Object.keys(f.dosisEspecies);
-    if (especiesCalc.length === 1) {
-      selEspecieCalc.value = especiesCalc[0];
-      selEspecieCalc.dispatchEvent(new Event("change"));
+/* Bottom sheet con fallback */
+const USE_SHEET = !!sheet;
+function openSheet(title, options = []) {
+  if (!USE_SHEET) {
+    const first = options.find(o => typeof o?.onClick === "function" && !o.disabled);
+    if (first) first.onClick();
+    return;
+  }
+  sheetTitle.textContent = title || "Opciones";
+  sheetContent.innerHTML = "";
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "sheet__option";
+    btn.innerHTML = `<span>${opt.label}</span> <span>${opt.suffix || ""}</span>`;
+    if (opt.disabled) {
+      btn.disabled = true; btn.style.opacity = ".55"; btn.style.cursor = "not-allowed";
+    } else if (typeof opt.onClick === "function") {
+      btn.addEventListener("click", () => { closeSheet(); opt.onClick(); });
     }
+    sheetContent.appendChild(btn);
+  });
+  sheet.removeAttribute("hidden");
+  sheet.classList.add("sheet--open");
+}
+function closeSheet(){
+  if (!USE_SHEET) return;
+  sheet.classList.remove("sheet--open");
+  setTimeout(()=> sheet.setAttribute("hidden",""), 220);
+}
+
+/* =========================================================
+   Tema (oscuro fijo)
+   ========================================================= */
+function setThemeDark(){ document.body.classList.add("dark"); }
+setThemeDark();
+toggleTema && (toggleTema.style.display = "none"); // por si quedó en el HTML
+
+/* =========================================================
+   Cambio de módulo
+   ========================================================= */
+function cambiarModulo(modulo){
+  moduloActual = modulo;
+  localStorage.setItem("modulo-actual", moduloActual);
+  itemsMenu.forEach(btn => btn.classList.toggle("activo", btn.dataset.modulo === modulo));
+
+  if (modulo === "home") {
+    show(homeGrid);
+    hide(filtrosHormonasSec); hide(contHormonas);
+    hide(filtrosFarmacosSec); hide(contFarmacos); hide(calcPanel);
+    panelMenu && panelMenu.classList.remove("oculto");
+    return;
   }
 
-  // 3. Mostrar panel de Farmacología por si está en Hormonas
-  cambiarModulo("farmacos");
+  hide(homeGrid);
 
-  // 4. Hacer scroll suave hasta la calculadora
-  calcPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (modulo === "hormonas") {
+    ensureBackButton(filtrosHormonasSec);
+    show(filtrosHormonasSec); show(contHormonas);
+    hide(filtrosFarmacosSec); hide(contFarmacos); hide(calcPanel);
+    renderHormonas([], false);
+  } else if (modulo === "farmacos") {
+    ensureBackButton(filtrosFarmacosSec);
+    hide(filtrosHormonasSec); hide(contHormonas);
+    show(filtrosFarmacosSec); show(contFarmacos); show(calcPanel);
+    renderFarmacos([]);
+  }
+  panelMenu && panelMenu.classList.add("oculto");
+}
+
+/* =========================================================
+   Home: navegación por tarjetas
+   ========================================================= */
+document.querySelectorAll(".glass-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const mod = card.dataset.mod;
+    if (mod === "fisiologia") {
+      openSheet("Fisiología", [
+        { label: "Hormonas (activo)", onClick: () => cambiarModulo("hormonas") },
+        { label: "Vitaminas (próx.)", disabled: true, suffix:"🔒" },
+      ]);
+    } else if (mod === "farmacologia") {
+      openSheet("Farmacología", [
+        { label: "Vademécum (activo)", onClick: () => { cambiarModulo("farmacos"); window.scrollTo({top:0,behavior:"smooth"}); } },
+        { label: "Calculadora (activa)", onClick: () => { cambiarModulo("farmacos"); calcPanel.scrollIntoView({behavior:"smooth"}); } },
+      ]);
+    } else if (mod === "toxicologia") {
+      openSheet("Toxicología", [{ label: "Módulos (próx.)", disabled: true, suffix:"🔒"}]);
+    } else if (mod === "anatomia") {
+      openSheet("Anatomía", [{ label: "Atlas (próx.)", disabled:true, suffix:"🔒"}]);
+    } else if (mod === "patologia") {
+      openSheet("Patología", [{ label: "Protocolos (próx.)", disabled:true, suffix:"🔒"}]);
+    }
+  });
 });
+sheetBackdrop && sheetBackdrop.addEventListener("click", closeSheet);
+sheetClose && sheetClose.addEventListener("click", closeSheet);
 
+/* Menú lateral */
+if (btnMenu && sideMenu){
+  btnMenu.addEventListener("click", () => sideMenu.classList.toggle("open"));
+  sideMenu.addEventListener("click", (e) => { if (e.target === sideMenu) sideMenu.classList.remove("open"); });
+}
 
-let moduloActual = "hormonas";
-
-// Mapea el sistema a una clase CSS para el color
-function claseSistema(sistema) {
-  const s = sistema.toLowerCase();
+/* =========================================================
+   Render HORMONAS + filtros
+   ========================================================= */
+function claseSistema(sistema){
+  const s = normSearch(sistema);
   if (s.startsWith("digestivo")) return "sis-digestivo";
-  if (s.startsWith("respiratorio/cardíaco")) return "sis-respiratorio-cardíaco";
-  if (s.startsWith("cardíaco/circulatorio")) return "sis-cardíaco-circulatorio";
+  if (s.startsWith("respiratorio/cardiaco")) return "sis-respiratorio-cardíaco";
+  if (s.startsWith("cardiaco/circulatorio")) return "sis-cardíaco-circulatorio";
   if (s.startsWith("nervioso/neuroendocrino")) return "sis-nervioso-neuroendocrino";
-  if (s.startsWith("renal/metabólico")) return "sis-renal-metabólico";
-  if (s.startsWith("renal")) return "sis-renal";
+  if (s.startsWith("renal/metabolico")) return "sis-renal-metabólico";
+  if (s === "renal") return "sis-renal";
   if (s.startsWith("reproductivo")) return "sis-reproductivo";
-  if (s.startsWith("endocrino/metabólico")) return "sis-endocrino-metabólico";
-  if (s.startsWith("inmunológico")) return "sis-inmunológico";
-  if (s.startsWith("óseo/piel")) return "sis-óseo-piel";
+  if (s.startsWith("endocrino/metabolico")) return "sis-endocrino-metabólico";
+  if (s.startsWith("inmunologico")) return "sis-inmunológico";
+  if (s.startsWith("oseo/piel")) return "sis-óseo-piel";
   return "";
 }
 
-// --------- RENDER HORMONAS ---------
-function renderHormonas(lista, filtrosAplicados) {
+function renderHormonas(lista, filtrosAplicados){
+  if (!contHormonas) return;
   contHormonas.innerHTML = "";
 
-  if (!filtrosAplicados) {
+  if (!filtrosAplicados){
     contHormonas.innerHTML = `
       <p class="mensaje-inicial">
         Usa el filtro de <strong>sistema</strong>, el filtro de 
         <strong>especie</strong> o escribe algo en <strong>Buscar</strong> 
         para ver las hormonas.
-      </p>
-    `;
+      </p>`;
     return;
   }
 
-  if (lista.length === 0) {
+  if (!lista.length){
     contHormonas.innerHTML = `<p>No se encontraron hormonas con esos criterios.</p>`;
     return;
   }
 
-  lista.forEach((h) => {
+  lista.forEach(h => {
     const card = document.createElement("article");
-    const claseSis = claseSistema(h.sistema);
-    card.className = `tarjeta-hormona ${claseSis}`;
-
+    card.className = `tarjeta-hormona ${claseSistema(h.sistema)}`;
     card.innerHTML = `
       <h2>${h.nombre}</h2>
       <div class="sigla">Sigla: <strong>${h.sigla || "-"}</strong></div>
       <span class="badge-sistema">${h.sistema}</span>
-      <p><strong>Origen:</strong><br>${h.origen.replace(/\n/g, "<br>")}</p>
-      <p><strong>Función principal:</strong> ${h.funcion}</p>
-      <p><strong>Patología (↓ / ↑):</strong><br>${h.patologia.replace(/\n/g, "<br>")}</p>
-      <p><strong>Funciones secundarias:</strong> ${h.secundarias}</p>
-      <p><strong>Variaciones por especie:</strong> ${h.variaciones}</p>
-      <p><strong>Afecciones farmacológicas:</strong> ${h.farmaco}</p>
+      <p><strong>Origen:</strong><br>${(h.origen||"").replace(/\n/g,"<br>")}</p>
+      <p><strong>Función principal:</strong> ${h.funcion||"—"}</p>
+      <p><strong>Patología (↓ / ↑):</strong><br>${(h.patologia||"").replace(/\n/g,"<br>")}</p>
+      <p><strong>Funciones secundarias:</strong> ${h.secundarias||"—"}</p>
+      <p><strong>Variaciones por especie:</strong> ${h.variaciones||"—"}</p>
+      <p><strong>Afecciones farmacológicas:</strong> ${h.farmaco||"—"}</p>
     `;
-
     contHormonas.appendChild(card);
   });
 }
 
-function aplicarFiltrosHormonas() {
-  const sistemaSeleccionado = filtroSistema.value;
-  const especieSeleccionada = filtroEspecie.value;
-  const texto = buscador.value.toLowerCase().trim();
+function aplicarFiltrosHormonas(){
+  const sistemaSel = filtroSistema ? canonSistema(filtroSistema.value) : "todos";
+  const especieSel = filtroEspecie  ? normSearch(filtroEspecie.value)  : "todas";
+  const texto      = (buscador && buscador.value ? normSearch(buscador.value) : "");
 
-  const filtrosAplicados =
-    sistemaSeleccionado !== "todos" ||
-    especieSeleccionada !== "todas" ||
-    texto !== "";
+  const filtrosAplicados = sistemaSel !== "todos" || especieSel !== "todas" || texto !== "";
 
-  const filtradas = hormonas.filter((h) => {
-    const coincideSistema =
-      sistemaSeleccionado === "todos" || h.sistema === sistemaSeleccionado;
-
-    const coincideEspecie =
-      especieSeleccionada === "todas" ||
-      (h.especies &&
-        h.especies.map((e) => e.toLowerCase()).includes(especieSeleccionada));
-
-    const textoEnCampos =
-      texto === "" ||
-      h.nombre.toLowerCase().includes(texto) ||
-      h.sigla.toLowerCase().includes(texto) ||
-      h.sistema.toLowerCase().includes(texto) ||
-      h.funcion.toLowerCase().includes(texto) ||
-      h.patologia.toLowerCase().includes(texto) ||
-      h.variaciones.toLowerCase().includes(texto) ||
-      h.farmaco.toLowerCase().includes(texto);
-
-    return coincideSistema && coincideEspecie && textoEnCampos;
+  const filtradas = HORMONAS.filter(h => {
+    const okSistema = sistemaSel === "todos" || canonSistema(h.sistema) === sistemaSel;
+    const okEspecie = especieSel === "todas" || (h.especies||[]).includes(especieSel);
+    const okTexto   = !texto || [
+      h.nombre, h.sigla, h.sistema, h.funcion, h.patologia, h.variaciones, h.farmaco, h.origen
+    ].filter(Boolean).some(v => includesNorm(v, texto));
+    return okSistema && okEspecie && okTexto;
   });
 
   renderHormonas(filtradas, filtrosAplicados);
 }
 
-// COLORES POR GRUPO FARMACOLÓGICO
+/* =========================================================
+   Render FÁRMACOS + filtros
+   ========================================================= */
 const coloresFarmacos = {
   antimicrobiano: "#4cc9f0",
   antiparasitario: "#80ed99",
@@ -1580,63 +1645,37 @@ const coloresFarmacos = {
   cardio: "#ef476f",
   neuro: "#6d597a",
   gastrico: "#219ebc",
-  otros : "#adb5bd",
+  otros: "#adb5bd",
 };
 
-// --------- RENDER FÁRMACOS --------- 
-function renderFarmacos(lista = []) {
-  const base = lista.length ? lista : farmacos;
+function renderFarmacos(lista = []){
+  if (!contFarmacos) return;
+  const base = lista.length ? lista : FARMACOS;
   contFarmacos.innerHTML = "";
 
-  if (!base.length) {
-    contFarmacos.innerHTML =
-      `<p class="mensaje-vacio">No se encontraron fármacos.</p>`;
+  if (!base.length){
+    contFarmacos.innerHTML = `<p class="mensaje-vacio">No se encontraron fármacos.</p>`;
     return;
   }
 
-  base.forEach((f) => {
-    const index = farmacos.indexOf(f);
-    const card = document.createElement("article");
+  base.forEach(f => {
+    const index = FARMACOS.indexOf(f);
+    const card  = document.createElement("article");
     card.className = "card card-farmaco";
     card.dataset.index = index;
 
-    // ================================
-    // 1. GENERAR clave del grupo (ROBUSTO)
-    // ================================
-    const grupoRaw = (f.grupo || "").toString();      // 👈 evita error si falta grupo
-    let grupoClave = grupoRaw.split("–")[0].trim().toLowerCase();
-
-    // Aliases para que coincida con coloresFarmacos
-    if (grupoClave === "cardiológico") grupoClave = "cardio";
-    if (grupoClave === "cardiologicos") grupoClave = "cardio";
-    if (grupoClave === "a.i.n.e") grupoClave = "aine";
-
-    // Guardar la clave para los filtros
-    f.grupoClave = grupoClave;
-
-    // ================================
-    // 2. Color según grupo
-    // ================================
-    const color = coloresFarmacos[grupoClave] || "#888";
+    const color = coloresFarmacos[f.grupoClave] || "#888";
     card.style.setProperty("--borde-farmaco", color);
 
-    // ================================
-    // 3. Construir tarjeta
-    // ================================
-    const viasTexto = f.vias?.join(", ") || f.via || "—";
-    const especiesTexto = f.especies?.join(", ") || "—";
+    const viasTexto     = Array.isArray(f.vias) ? f.vias.join(", ") : (f.via || "—");
+    const especiesTexto = Array.isArray(f.especies) && f.especies.length
+      ? f.especies.map(e=> e.charAt(0).toUpperCase()+e.slice(1)).join(", ")
+      : "—";
 
     card.innerHTML = `
       <h3>${f.nombre}</h3>
-
-      <p class="farmaco-comercial">
-        <span>Nombre comercial:</span> ${f.nombreComercial || "—"}
-      </p>
-
-      <div class="chip-farmaco" style="background:${color}">
-        ${grupoRaw || "—"}
-      </div>
-
+      <p class="farmaco-comercial"><span>Nombre comercial:</span> ${f.nombreComercial || "—"}</p>
+      <div class="chip-farmaco" style="background:${color}">${f.grupo || "—"}</div>
       <p><strong>Vías:</strong> ${viasTexto}</p>
       <p><strong>Especies:</strong> ${especiesTexto}</p>
       <p><strong>Indicaciones:</strong> ${f.indicaciones || "—"}</p>
@@ -1644,146 +1683,94 @@ function renderFarmacos(lista = []) {
       <p><strong>Dosis general:</strong> ${f.dosis || "—"}</p>
       <p><strong>Período de retiro:</strong> ${f.retiro || "—"}</p>
       <p><strong>Notas:</strong> ${f.notas || "—"}</p>
-
       <div class="card-acciones">
-        <button class="btn-primario btn-desde-card">
-          Usar en calculadora
-        </button>
+        <button class="btn-primario btn-desde-card">Usar en calculadora</button>
       </div>
     `;
-
     contFarmacos.appendChild(card);
   });
 }
 
+function aplicarFiltrosFarmacos(){
+  const grupoSel   = filtroGrupoFarmaco ? normSearch(filtroGrupoFarmaco.value) : "todos";
+  const especieSel = filtroEspecieFarmaco ? normSearch(filtroEspecieFarmaco.value) : "todas";
+  const texto      = (buscadorFarmaco && buscadorFarmaco.value ? normSearch(buscadorFarmaco.value) : "");
 
-
-function aplicarFiltrosFarmacos() {
-  const grupoSel = filtroGrupoFarmaco.value;
-  const especieSel = filtroEspecieFarmaco.value;
-  const texto = buscadorFarmaco.value.toLowerCase().trim();
-
-  const filtrosAplicados =
-    grupoSel !== "todos" ||
-    especieSel !== "todas" ||
-    texto !== "";
-
-  const filtradas = farmacos.filter((f) => {
-    const coincideGrupo =
-      grupoSel === "todos" || f.grupoClave === grupoSel;
-
-    const coincideEspecie =
-      especieSel === "todas" ||
-      f.especies.map((e) => e.toLowerCase()).includes(especieSel);
-
-    const textoEnCampos =
-      texto === "" ||
-      f.nombre.toLowerCase().includes(texto) ||
-      f.nombreComercial.toLowerCase().includes(texto) ||
-      f.grupo.toLowerCase().includes(texto) ||
-      f.indicaciones.toLowerCase().includes(texto) ||
-      f.contraindicaciones.toLowerCase().includes(texto);
-
-    return coincideGrupo && coincideEspecie && textoEnCampos;
+  const filtradas = FARMACOS.filter(f => {
+    const okGrupo   = grupoSel === "todos" || normSearch(f.grupoClave) === grupoSel;
+    const okEspecie = especieSel === "todas" || (f.especies||[]).includes(especieSel);
+    const okTexto   = !texto || [f.nombre,f.nombreComercial,f.grupo,f.indicaciones,f.contraindicaciones,f.notas]
+      .filter(Boolean).some(v => includesNorm(v, texto));
+    return okGrupo && okEspecie && okTexto;
   });
 
-  renderFarmacos(filtradas, filtrosAplicados);
+  renderFarmacos(filtradas);
 }
 
-function cambiarModulo(modulo) {
-  moduloActual = modulo;
+/* Card → Calculadora */
+contFarmacos && contFarmacos.addEventListener("click", (ev) => {
+  const boton = ev.target.closest(".btn-desde-card");
+  if (!boton) return;
+  const card = boton.closest(".card-farmaco");
+  if (!card) return;
 
-  if (modulo === "hormonas") {
-    filtrosHormonasSec.classList.remove("oculto");
-    contHormonas.classList.remove("oculto");
-    filtrosFarmacosSec.classList.add("oculto");
-    contFarmacos.classList.add("oculto");
-    calcPanel.classList.add("oculto");
-  } else {
-    filtrosHormonasSec.classList.add("oculto");
-    contHormonas.classList.add("oculto");
-    filtrosFarmacosSec.classList.remove("oculto");
-    contFarmacos.classList.remove("oculto");
-    calcPanel.classList.remove("oculto");
+  const idx = card.dataset.index;
+  const f   = FARMACOS[parseInt(idx,10)];
+  if (!f) return;
+
+  selFarmacoCalc.value = String(idx);
+  selFarmacoCalc.dispatchEvent(new Event("change"));
+
+  if (f.dosisEspecies){
+    const especiesCalc = Object.keys(f.dosisEspecies);
+    if (especiesCalc.length === 1){
+      selEspecieCalc.value = especiesCalc[0];
+      selEspecieCalc.dispatchEvent(new Event("change"));
+    }
   }
-
-  itemsMenu.forEach((btn) => {
-    btn.classList.toggle("activo", btn.dataset.modulo === modulo);
-  });
-
-  panelMenu.classList.add("oculto");
-
-  if (modulo === "hormonas") {
-    renderHormonas([], false);
-  } else {
-    renderFarmacos([], false);
-  }
-}
-
-
-// --------- TEMA OSCURO ---------
-function cargarTema() {
-  const tema = localStorage.getItem("tema-hormonas-vet");
-  if (tema === "dark") {
-    document.body.classList.add("dark");
-    toggleTema.textContent = "Modo claro";
-  } else {
-    document.body.classList.remove("dark");
-    toggleTema.textContent = "Modo oscuro";
-  }
-}
-
-toggleTema.addEventListener("click", () => {
-  const esDark = document.body.classList.toggle("dark");
-  localStorage.setItem("tema-hormonas-vet", esDark ? "dark" : "light");
-  toggleTema.textContent = esDark ? "Modo claro" : "Modo oscuro";
+  cambiarModulo("farmacos");
+  calcPanel.scrollIntoView({ behavior:"smooth", block:"start" });
 });
 
-// --------- EVENTOS ---------
-filtroSistema.addEventListener("change", aplicarFiltrosHormonas);
-filtroEspecie.addEventListener("change", aplicarFiltrosHormonas);
-buscador.addEventListener("input", aplicarFiltrosHormonas);
+/* =========================================================
+   Eventos
+   ========================================================= */
+filtroSistema && filtroSistema.addEventListener("change", aplicarFiltrosHormonas);
+filtroEspecie && filtroEspecie.addEventListener("change", aplicarFiltrosHormonas);
+buscador && buscador.addEventListener("input", aplicarFiltrosHormonas);
 
-filtroGrupoFarmaco.addEventListener("change", aplicarFiltrosFarmacos);
-filtroEspecieFarmaco.addEventListener("change", aplicarFiltrosFarmacos);
-buscadorFarmaco.addEventListener("input", aplicarFiltrosFarmacos);
+filtroGrupoFarmaco && filtroGrupoFarmaco.addEventListener("change", aplicarFiltrosFarmacos);
+filtroEspecieFarmaco && filtroEspecieFarmaco.addEventListener("change", aplicarFiltrosFarmacos);
+buscadorFarmaco && buscadorFarmaco.addEventListener("input", aplicarFiltrosFarmacos);
 
-btnMenu.addEventListener("click", () => {
-  panelMenu.classList.toggle("oculto");
-});
+itemsMenu.forEach(btn => btn.addEventListener("click", () => cambiarModulo(btn.dataset.modulo)));
 
-itemsMenu.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    cambiarModulo(btn.dataset.modulo);
-  });
-});
-
-// ==========================
-// LÓGICA CALCULADORA FÁRMACOS
-// ==========================
-// Llenar select de fármacos al inicio
-function poblarSelectFarmacos() {
-  farmacos.forEach((f, idx) => {
+/* =========================================================
+   Calculadora
+   ========================================================= */
+function poblarSelectFarmacos(){
+  if (!selFarmacoCalc) return;
+  selFarmacoCalc.innerHTML = '<option value="">Selecciona un fármaco…</option>';
+  FARMACOS.forEach((f, idx) => {
     const opt = document.createElement("option");
-    opt.value = idx.toString();
+    opt.value = String(idx);
     opt.textContent = f.nombre;
     selFarmacoCalc.appendChild(opt);
   });
 }
 
-// Cuando cambia fármaco → poblar especies
-selFarmacoCalc.addEventListener("change", () => {
+selFarmacoCalc && selFarmacoCalc.addEventListener("change", () => {
   selEspecieCalc.innerHTML = '<option value="">Elige especie…</option>';
-  selViaCalc.innerHTML = '<option value="">Primero especie…</option>';
-  resultadoCalc.innerHTML = `<p>Selecciona especie, vía y peso para calcular.</p>`;
+  selViaCalc.innerHTML     = '<option value="">Primero especie…</option>';
+  resultadoCalc.innerHTML  = `<p>Selecciona especie, vía y peso para calcular.</p>`;
 
   const idx = selFarmacoCalc.value;
-  if (idx === "") return;
+  if (!idx) return;
 
-  const f = farmacos[parseInt(idx, 10)];
-  if (!f.dosisEspecies) return;
+  const f = FARMACOS[parseInt(idx,10)];
+  if (!f?.dosisEspecies) return;
 
-  Object.keys(f.dosisEspecies).forEach((esp) => {
+  Object.keys(f.dosisEspecies).forEach(esp => {
     const opt = document.createElement("option");
     opt.value = esp;
     opt.textContent = esp.charAt(0).toUpperCase() + esp.slice(1);
@@ -1791,52 +1778,47 @@ selFarmacoCalc.addEventListener("change", () => {
   });
 });
 
-// Cuando cambia especie → poblar vías
-selEspecieCalc.addEventListener("change", () => {
-  selViaCalc.innerHTML = '<option value="">Elige vía…</option>';
+selEspecieCalc && selEspecieCalc.addEventListener("change", () => {
+  selViaCalc.innerHTML    = '<option value="">Elige vía…</option>';
   resultadoCalc.innerHTML = `<p>Selecciona vía y peso para calcular.</p>`;
 
   const idx = selFarmacoCalc.value;
   const especie = selEspecieCalc.value;
-  if (idx === "" || especie === "") return;
+  if (!idx || !especie) return;
 
-  const f = farmacos[parseInt(idx, 10)];
-  const info = f.dosisEspecies?.[especie];
+  const f    = FARMACOS[parseInt(idx,10)];
+  const info = f?.dosisEspecies?.[especie];
   if (!info) return;
 
-  info.vias.forEach((v) => {
+  (info.vias || []).forEach(v => {
     const opt = document.createElement("option");
-    opt.value = v;
-    opt.textContent = v;
+    opt.value = v; opt.textContent = v;
     selViaCalc.appendChild(opt);
   });
 });
 
-// Botón Calcular
-btnCalcular.addEventListener("click", () => {
-  const idx = selFarmacoCalc.value;
+btnCalcular && btnCalcular.addEventListener("click", () => {
+  const idx     = selFarmacoCalc.value;
   const especie = selEspecieCalc.value;
-  const via = selViaCalc.value;
-  const peso = parseFloat(inputPesoCalc.value);
+  const via     = selViaCalc.value;
+  const peso    = parseFloat(inputPesoCalc.value);
 
-  if (idx === "" || especie === "" || via === "" || isNaN(peso) || peso <= 0) {
-    resultadoCalc.innerHTML = `<p>Completa fármaco, especie, vía y peso válido para calcular.</p>`;
+  if (!idx || !especie || !via || isNaN(peso) || peso <= 0){
+    resultadoCalc.innerHTML = `<p>Completa fármaco, especie, vía y un peso válido para calcular.</p>`;
     return;
   }
 
-  const f = farmacos[parseInt(idx, 10)];
-  const info = f.dosisEspecies?.[especie];
-
-  if (!info) {
+  const f    = FARMACOS[parseInt(idx,10)];
+  const info = f?.dosisEspecies?.[especie];
+  if (!info){
     resultadoCalc.innerHTML = `<p>No hay datos de dosis configurados para esa especie en este fármaco.</p>`;
     return;
   }
 
   const mgKg = info.mgKg;
-  const conc = info.concMgMl || null;
-
-  const dosisMg = peso * mgKg;
-  const volumenMl = conc ? dosisMg / conc : null;
+  const conc = info.concMgMl ?? null;
+  const dosisMg   = peso * mgKg;
+  const volumenMl = conc ? (dosisMg / conc) : null;
 
   let html = `
     <p><strong>Fármaco:</strong> ${f.nombre}</p>
@@ -1844,29 +1826,21 @@ btnCalcular.addEventListener("click", () => {
     <p><strong>Vía seleccionada:</strong> ${via}</p>
     <p><strong>Dosis usada para el cálculo:</strong> ${mgKg} mg/kg</p>
     <p><strong>Peso:</strong> ${peso.toFixed(2)} kg</p>
-    <p><strong>Total de fármaco:</strong> ${dosisMg.toFixed(2)} mg</p>
-  `;
-
-  if (volumenMl !== null) {
+    <p><strong>Total de fármaco:</strong> ${dosisMg.toFixed(2)} mg</p>`;
+  if (volumenMl !== null){
     html += `<p><strong>Concentración:</strong> ${conc} mg/ml → <strong>Volumen:</strong> ${volumenMl.toFixed(2)} ml</p>`;
   }
-
   html += `
-    <p><strong>Frecuencia recomendada (estudio):</strong> ${info.frecuencia}</p>
-    <p><strong>Días/veces recomendados (estudio):</strong> ${info.dias}</p>
-    <p style="margin-top:0.4rem;font-size:0.78rem;color:#f97316;">
-      ⚠ Esta calculadora es una herramienta de estudio. 
-      Verificar siempre con vademécum veterinario y normativa local antes de aplicar en clínica real.
-    </p>
-  `;
-
+    <p><strong>Frecuencia (estudio):</strong> ${info.frecuencia || "—"}</p>
+    <p><strong>Días/veces (estudio):</strong> ${info.dias || "—"}</p>
+    <p style="margin-top:.4rem;font-size:.78rem;color:#f97316;">
+      ⚠ Herramienta de estudio. Verificar siempre con vademécum y normativa local.
+    </p>`;
   resultadoCalc.innerHTML = html;
 });
 
-
-
-// --------- ESTADO INICIAL ---------
-cargarTema();
+/* =========================================================
+   Estado inicial
+   ========================================================= */
 poblarSelectFarmacos();
-cambiarModulo("hormonas");
-
+cambiarModulo(moduloActual);
