@@ -1,322 +1,121 @@
-/* =========================================================
-   CATTLE · Mini-App Veterinaria (DARK ONLY)
-   Hoja de estilos completa (Home + Hormonas + Farma)
-   ========================================================= */
-
-/* -----------------------------
-   PALETA BASE (modo oscuro fijo)
------------------------------- */
 :root{
-  /* layout */
-  --bg: #020617;          /* fondo general */
-  --bg-card: #0b1220;     /* tarjetas/paneles */
-  --bg-header: #0b1220;   /* topbar */
-  --bg-header-soft: #0b1220;
-
-  /* texto & bordes */
-  --text-main: #e5e7eb;   /* texto principal */
-  --text-soft: #9ca3af;   /* texto suave */
-  --border-soft: #1f2937; /* líneas/bordes */
-
-  /* sombras */
-  --shadow-soft: 0 18px 35px rgba(0,0,0,.55);
-
-  /* tokens reutilizables */
-  --card-bg: #0b1220;
-  --text-color: #e5e7eb;
-  --chip-bg: #1f2937;
-  --accent-color: #6366f1;
-  --shadow: 0 18px 35px rgba(0,0,0,.55);
-
-  /* bordes temáticos */
-  --c-fisio:#22c55e; --c-farma:#0ea5e9; --c-toxi:#f97316; --c-anat:#a78bfa; --c-pato:#ef4444;
+  --bg:#0b1220; --fg:#e8eefc; --muted:#a8b3cf;
+  --card:#111a2b; --card-line:#243255; --chip:#1f2c4e;
+  --accent:#469be5; --header:#0c1426; --header-line:#18223a;
 }
 
-/* -----------------------------
-   RESET BÁSICO
------------------------------- */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-  background:var(--bg);
-  color:var(--text-main);
+  margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+  color:var(--fg); background:var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
+a{color:inherit}
 
-/* -----------------------------
-   TOPBAR
------------------------------- */
+/* Topbar */
 .topbar{
-  background: linear-gradient(135deg, var(--bg-header), var(--bg-header-soft));
-  color:#fff; padding:.9rem 1.3rem;
-  display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 16px;background:var(--header);position:sticky;top:0;z-index:5;
+  border-bottom:1px solid var(--header-line);
 }
-.topbar-left{ display:flex; align-items:center; gap:.7rem; }
-.topbar-title h1{ margin:0; font-size:1.5rem; }
-.topbar-title p{ margin:.2rem 0 0; font-size:.9rem; opacity:.9; }
-
-/* -----------------------------
-   BOTÓN HAMBURGUESA
------------------------------- */
+.topbar-left{display:flex;align-items:center;gap:10px}
+.topbar h1{margin:0;font-size:20px;letter-spacing:.4px}
+.topbar p{margin:0;font-size:12px;color:var(--muted)}
 .btn-menu{
-  width:40px; height:40px; background:transparent; border:none; padding:0; cursor:pointer;
-  display:flex; flex-direction:column; justify-content:center; align-items:center; gap:6px;
-  color: inherit;
+  background:#1a2440;color:var(--fg);border:1px solid #263458;
+  border-radius:10px;padding:8px 12px;cursor:pointer
 }
-.btn-menu span{
-  width:28px; height:3px; border-radius:4px; transition:.2s ease;
-  background: currentColor;
-}
+.btn-tema{display:none}
 
-/* -----------------------------
-   MENÚ DESPLEGABLE SUPERIOR
------------------------------- */
-.panel-menu{
-  background: var(--bg-card);
-  border-bottom:1px solid var(--border-soft);
-  padding:.4rem 1.3rem .5rem;
-  display:flex; gap:.6rem; flex-wrap:wrap;
-}
-.item-menu{
-  border-radius:999px; border:1px solid var(--border-soft);
-  background:transparent; padding:.25rem .9rem; font-size:.85rem; cursor:pointer;
-  color: var(--text-soft);
-}
-.item-menu.activo{
-  background:#4f46e5; border-color:#4f46e5; color:#f9fafb;
-}
-
-/* -----------------------------
-   (Se deja sin uso) BOTÓN TEMA
------------------------------- */
-.btn-tema{ display:none !important; }
-
-/* -----------------------------
-   FILTROS
------------------------------- */
-.filtros{
-  padding:.8rem 1.5rem; background:var(--bg-card);
-  border-bottom:1px solid var(--border-soft);
-  display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;
-}
-.filtro-item{ display:flex; flex-direction:column; font-size:.9rem; }
-.filtro-item label{ margin-bottom:.2rem; color:var(--text-soft); }
-.filtros select, .filtros input{
-  padding:.45rem .7rem; border-radius:999px;
-  border:1px solid var(--border-soft);
-  background:#0f1a2f; color:var(--text-main); font-size:.9rem;
-}
-.filtro-busqueda{ min-width:240px; }
-
-/* -----------------------------
-   CONTENEDORES PRINCIPALES
------------------------------- */
-#contenedor-hormonas, #contenedor-farmacos{
-  padding:1.4rem; max-width:1200px; margin:0 auto;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:1rem;
-}
-.mensaje-inicial{
-  grid-column:1 / -1; text-align:center; font-size:0.95rem; color:var(--text-soft);
-}
-
-/* -----------------------------
-   TARJETAS (base)
------------------------------- */
-.tarjeta-hormona, .tarjeta-farmaco{
-  background:var(--bg-card);
-  border-radius:18px; padding:1rem 1.1rem;
-  border:1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  display:flex; flex-direction:column; gap:.25rem;
-  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.tarjeta-hormona:hover, .tarjeta-farmaco:hover{
-  transform:translateY(-2px); box-shadow:0 18px 38px rgba(0,0,0,.18);
-}
-.tarjeta-hormona h2, .tarjeta-farmaco h2{ margin:0; font-size:1.05rem; color:var(--text-main); }
-.sigla{ font-size:.85rem; color:var(--text-soft); }
-.tarjeta-hormona p, .tarjeta-farmaco p{ margin:.12rem 0; font-size:.87rem; line-height:1.35; }
-.tarjeta-hormona strong, .tarjeta-farmaco strong{ font-weight:600; }
-
-/* badge de sistema/grupo */
-.badge-sistema, .badge-grupo{
-  display:inline-block; margin:.2rem 0 .4rem; padding:.18rem .65rem;
-  border-radius:999px; font-size:.72rem;
-  background:var(--chip-bg); color: var(--text-main);
-}
-
-/* -----------------------------
-   COLORES POR SISTEMA (hormonas)
------------------------------- */
-.tarjeta-hormona.sis-digestivo{ border-left:4px solid #22c55e; }
-.tarjeta-hormona.sis-respiratorio-cardíaco{ border-left:4px solid #0ea5e9; }
-.tarjeta-hormona.sis-cardíaco-circulatorio{ border-left:4px solid #ef4444; }
-.tarjeta-hormona.sis-nervioso-neuroendocrino{ border-left:4px solid #8b5cf6; }
-.tarjeta-hormona.sis-renal, .tarjeta-hormona.sis-renal-metabólico{ border-left:4px solid #0d9488; }
-.tarjeta-hormona.sis-reproductivo{ border-left:4px solid #ec4899; }
-.tarjeta-hormona.sis-endocrino-metabólico{ border-left:4px solid #f97316; }
-.tarjeta-hormona.sis-inmunológico{ border-left:4px solid #eab308; }
-.tarjeta-hormona.sis-óseo-piel{ border-left:4px solid #6366f1; }
-
-/* -----------------------------
-   TARJETA FARMACOLÓGICA
------------------------------- */
-.card-farmaco{
-  background: var(--card-bg);
-  color: var(--text-color);
-  box-shadow: var(--shadow);
-  border-left:5px solid var(--borde-farmaco, #0ea5e9);
-}
-.card-farmaco h3{ margin:0 0 .3rem; font-size:1.25rem; font-weight:800; color:var(--text-color); }
-.chip-farmaco{
-  display:inline-block; padding:4px 10px; border-radius:12px; font-size:.78rem;
-  background: var(--chip-bg); color: var(--text-color); margin-bottom:10px;
-}
-.card-acciones{ margin-top:.6rem; display:flex; justify-content:flex-end; }
-.btn-desde-card{
-  margin-top:.6rem; padding:.45rem 1rem; border-radius:10px; font-size:.86rem;
-  background: var(--accent-color); color:#fff; border:none; cursor:pointer; transition:opacity .15s ease;
-}
-.btn-desde-card:hover{ opacity:.9; }
-
-/* grid genérico reutilizable */
-.cards-grid{ display:grid; gap:1.4rem; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); margin-top:1rem; }
-
-/* -----------------------------
-   CALCULADORA DE FÁRMACOS
------------------------------- */
-.calc-farmaco{
-  max-width:1200px; margin:0 auto; padding:.8rem 1.4rem .4rem; color:var(--text-main);
-}
-.calc-farmaco h2{ font-size:1rem; margin:0 0 .6rem; }
-.calc-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:.6rem .8rem; align-items:flex-end;
-}
-.calc-item{ display:flex; flex-direction:column; font-size:.9rem; }
-.calc-item label{ margin-bottom:.2rem; color:var(--text-soft); }
-.calc-item select, .calc-item input{
-  padding:.45rem .7rem; border-radius:999px; border:1px solid var(--border-soft);
-  background:#0f1a2f; color:var(--text-main); font-size:.9rem;
-}
-.calc-item-boton{ align-items:flex-start; }
-.btn-primario{
-  padding:.5rem 1.15rem; border-radius:999px; border:none; font-size:.9rem; cursor:pointer;
-  background:var(--accent-color); color:#fff; box-shadow:0 6px 14px rgba(79,70,229,.35);
-}
-.btn-primario:hover{ filter:brightness(1.05); }
-.calc-resultado{
-  margin-top:.75rem; padding:.75rem .95rem; border-radius:12px;
-  border:1px dashed var(--border-soft); font-size:.9rem; background: rgba(148,163,184,.08);
-}
-.calc-resultado p{ margin:.12rem 0; }
-
-/* -----------------------------
-   HOME · CARDS “LIQUID GLASS”
------------------------------- */
+/* Home grid / cards */
 .home-grid{
-  max-width:1200px; margin:24px auto 56px; padding:0 16px;
-  display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;padding:32px;max-width:1100px;margin:0 auto
 }
 .glass-card{
-  position:relative; border-radius:28px; padding:26px 18px;
-  background: rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 12px 28px rgba(0,0,0,.35);
-  backdrop-filter: blur(16px);
-  color:#eaf1f8; text-align:center; cursor:pointer;
-  transition: transform .15s ease, box-shadow .2s ease;
+  background:var(--card);border:1.5px solid var(--card-borde,#334);
+  border-radius:20px;padding:26px;display:flex;align-items:center;gap:14px;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25); color:var(--fg);
 }
-.glass-card::before{
-  content:""; position:absolute; inset:0; border-radius:28px;
-  border-left:6px solid var(--card-borde, rgba(255,255,255,.35));
-  pointer-events:none;
+/* fuerza que todo lo interno herede color claro */
+.glass-card *{ color: inherit !important; }
+.glass-card .icon{font-size:34px;line-height:1}
+.glass-card .title{font-weight:800;font-size:24px}
+
+/* Filtros */
+.filtros{
+  display:flex;gap:14px;flex-wrap:wrap;padding:0 24px 10px;
+  max-width:1100px;margin:0 auto
 }
-.glass-card .icon{ font-size:54px; line-height:1; display:block; margin-bottom:10px; }
-.glass-card .title{ font-weight:800; letter-spacing:.2px; font-size:18px; }
-.glass-card:active{ transform:scale(.98); }
-.is-disabled{ opacity:.45; pointer-events:none; }
-
-/* -----------------------------
-   BOTTOM SHEET
------------------------------- */
-.sheet[hidden]{ display:none; }
-.sheet{ position:fixed; inset:0; z-index:60; }
-.sheet__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); opacity:0; transition:opacity .2s ease; }
-
-.sheet__panel{
-  position:absolute; left:0; right:0; bottom:-60%;
-  margin:0 auto; max-width:780px; width:100%;
-  background:rgba(18,26,34,.88);
-  border:1px solid rgba(255,255,255,.18);
-  border-top-left-radius:22px; border-top-right-radius:22px;
-  box-shadow:0 -18px 42px rgba(0,0,0,.5); backdrop-filter:blur(18px);
-  transform:translateY(0); transition:transform .22s ease;
+.filtro-item{display:flex;flex-direction:column;gap:6px}
+.filtro-item label{color:var(--muted)}
+.filtro-item select,.filtro-item input{
+  background:#0f1a2f;color:var(--fg);border:1px solid #2a3a5f;
+  border-radius:10px;padding:8px 10px;min-width:220px
 }
-.sheet--open .sheet__panel{ transform:translateY(-60%); }
-@media (max-width:640px){ .sheet--open .sheet__panel{ transform:translateY(-78%); } }
-.sheet--open .sheet__backdrop{ opacity:1; }
 
-.sheet__grab{ width:48px; height:5px; border-radius:99px; margin:10px auto 6px; background:rgba(255,255,255,.35); }
-.sheet__header{ display:flex; align-items:center; justify-content:space-between; padding:6px 14px 4px; }
-.sheet__header h3{ margin:0; font-size:18px; color:#e9eef5; }
-.sheet__close{ background:transparent; border:none; font-size:18px; cursor:pointer; color:#e9eef5; }
-.sheet__content{ padding:10px 14px 18px; display:grid; gap:10px; }
+/* Listas / tarjetas */
+.cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;padding:16px 24px;max-width:1100px;margin:0 auto
+}
+.tarjeta-hormona,.card{
+  background:var(--card);border:1px solid var(--card-line);
+  border-radius:16px;padding:14px
+}
+.tarjeta-hormona h2{margin:.1rem 0 .25rem}
+.sigla{color:var(--muted)}
+.badge-sistema{
+  display:inline-block;margin:.3rem 0 .6rem;background:var(--chip);
+  padding:.2rem .55rem;border-radius:999px;font-size:.78rem
+}
+
+/* Fármacos */
+.card h3{margin:.2rem 0 .4rem}
+.farmaco-comercial span{color:var(--muted);margin-right:.35rem}
+.chip-farmaco{
+  display:inline-block;color:#08111f;font-weight:700;padding:.2rem .55rem;
+  border-radius:999px;margin:.3rem 0 .6rem
+}
+.card-acciones{display:flex;justify-content:flex-end;margin-top:.6rem}
+.btn-primario{
+  background:var(--accent);border:none;color:#fff;padding:8px 12px;
+  border-radius:10px;cursor:pointer
+}
+
+/* Calc */
+.calc-farmaco{max-width:1100px;margin:0 auto;padding:6px 24px 24px}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.calc-item label{color:var(--muted)}
+.calc-item input,.calc-item select{
+  width:100%;background:#0f1a2f;color:var(--fg);border:1px solid #2a3a5f;border-radius:10px;padding:8px 10px
+}
+.calc-resultado{margin-top:10px;border:1px dashed #2a3a5f;border-radius:10px;padding:10px 12px;color:var(--fg)}
+
+/* Sheet */
+.sheet{position:fixed;inset:0;display:grid;grid-template-rows:1fr auto;z-index:50}
+.sheet[hidden]{display:none}
+.sheet__backdrop{background:rgba(0,0,0,.35)}
+.sheet__panel{background:#0e162a;border-top-left-radius:18px;border-top-right-radius:18px;padding:10px 14px 16px}
+.sheet__header{display:flex;justify-content:space-between;align-items:center;padding:4px 2px}
+.sheet__content{padding-top:6px}
 .sheet__option{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px; border-radius:16px; color:#f4f7fb; font-weight:650;
-  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.18);
+  width:100%;text-align:left;padding:12px;border-radius:12px;border:1px solid #263458;
+  background:#121c34;color:var(--fg);margin:.35rem 0;display:flex;justify-content:space-between;gap:8px;cursor:pointer
 }
 
-/* -----------------------------
-   MENÚ LATERAL (hamburguesa)
------------------------------- */
-.side-menu{
-  position:fixed; top:0; left:0; bottom:0; width:300px; z-index:70;
-  background:rgba(15,22,30,.95); backdrop-filter:blur(12px);
-  border-right:1px solid rgba(255,255,255,.16);
-  transform:translateX(-102%); transition:transform .22s ease;
-  color:#eaf1f8;
-}
-.side-menu.open{ transform:translateX(0); }
-.side-menu header{ padding:16px 18px; font-weight:700; }
-.side-menu .link{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 18px; border-top:1px solid rgba(255,255,255,.1);
-}
-.side-menu .badge{ font-size:.8rem; opacity:.7; }
+/* Side menu */
+.side-menu{position:fixed;inset:0 40% 0 0;background:#0b1324aa;backdrop-filter:blur(2px);display:none}
+.side-menu.open{display:block}
+.side-menu header{background:#0e1730;padding:12px 16px;border-bottom:1px solid var(--card-line)}
+.side-menu .link{padding:12px 16px;border-bottom:1px dashed #25345a}
+.badge{background:#22355e;padding:2px 6px;border-radius:999px;margin-left:6px;font-size:.75rem}
 
-/* -----------------------------
-   FOOTER & UTILIDADES
------------------------------- */
-footer{ text-align:center; padding:1rem .7rem 1.4rem; font-size:.85rem; color:var(--text-soft); }
-.oculto{ display:none !important; }
+footer{padding:30px 16px;color:var(--muted);text-align:center}
+.oculto{display:none !important}
 
-/* -----------------------------
-   RESPONSIVE
------------------------------- */
-@media (max-width:640px){
-  .topbar{ align-items:flex-start; }
-  .topbar-title h1{ font-size:1.25rem; }
-  #contenedor-hormonas, #contenedor-farmacos{ padding:.9rem; }
+/* Debug badge */
+.debug-badge{
+  position:fixed;bottom:10px;left:10px;background:#0a362a;color:#d1ffe8;
+  border:1px solid #177a5b;border-radius:10px;padding:4px 8px;font-size:12px;z-index:9999
 }
-
-/* Hereda color en cards (siempre claro) */
-.glass-card, .glass-card * { color: inherit; }
-
-/* ===== Botón ← Inicio (opcional) ===== */
-.btn-back{
-  margin-left:.25rem; border:1px solid rgba(255,255,255,.7);
-  background:transparent; color:#fff; padding:.35rem .8rem;
-  border-radius:999px; font-size:.9rem; cursor:pointer;
-}
-.btn-back:hover{ background:rgba(255,255,255,.12); }
-
-/* Botón Inicio dentro de filtros */
-.btn-inicio{
-  align-self:center; padding:.45rem .9rem; border-radius:999px;
-  border:1px solid var(--border-soft); background:transparent;
-  color:var(--text-main); cursor:pointer; margin-right:.6rem;
-}
-.btn-inicio:hover{ filter:brightness(1.05); }
