@@ -37,6 +37,10 @@ body {
   overflow-x: auto;
 }
 
+.nav-top {
+  justify-content: flex-start;
+}
+
 .nav-btn {
   padding: 0.5rem 1rem;
   border-radius: 999px;
@@ -50,6 +54,10 @@ body {
 
 .nav-btn.nav-active {
   background: #3b82f6;
+}
+
+.nav-primary {
+  margin-left: 0.5rem;
 }
 
 /* ========== BOTÓN HAMBURGUESA (3 rayas → X) ========== */
@@ -187,15 +195,121 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ========== GRID DE TARJETAS ========== */
+/* ========== TARJETAS DE MÓDULOS EN INICIO ========== */
+
+.home-modulos {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.home-card {
+  position: relative;
+  border: none;
+  border-radius: 1.3rem;
+  padding: 1.1rem 1.3rem;
+  background: #020617;
+  color: #f9fafb;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.home-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border-left: 5px solid transparent;
+}
+
+/* Colores por tarjeta */
+.home-card-fisio::before {
+  border-color: #22c55e; /* verde */
+}
+
+.home-card-farma::before {
+  border-color: #3b82f6; /* azul */
+}
+
+.home-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.7);
+}
+
+.home-card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.home-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.home-card-text {
+  font-size: 0.82rem;
+  color: #d1d5db;
+}
+
+/* ========== SUBNAV FISIOLOGÍA (HORMONAS / VITAMINAS) ========== */
+
+.fisio-subnav {
+  margin: 0.6rem 0 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.fisio-subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.fisio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.fisio-tab {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.fisio-tab-active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Panes de fisiología (hormonas / vitaminas) */
+.fisio-pane {
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.fisio-pane-active {
+  display: block;
+}
+
+/* ========== GRID Y TOOLBAR DE HORMONAS ========== */
 
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 0.9rem;
 }
-
-/* ========== TOOLBAR HORMONAS (BUSCADORES) ========== */
 
 .hormonas-toolbar {
   margin: 0.9rem 0 0.7rem;

@@ -13,9 +13,9 @@
     <h1>Mini-App Veterinaria</h1>
   </header>
 
-  <!-- NAV PRINCIPAL -->
-  <nav class="nav">
-    <!-- BOTÓN HAMBURGUESA A LA IZQUIERDA -->
+  <!-- NAV SUPERIOR: MENÚ + INICIO -->
+  <nav class="nav nav-top">
+    <!-- BOTÓN HAMBURGUESA -->
     <button
       class="nav-icon-btn"
       id="menu-toggle"
@@ -26,9 +26,9 @@
       <span></span>
     </button>
 
-    <button class="nav-btn" data-view="home">Inicio</button>
-    <button class="nav-btn" data-view="farmacologia">Farmacología</button>
-    <button class="nav-btn" data-view="fisiologia">Fisiología</button>
+    <button class="nav-btn nav-primary nav-active" data-view="home">
+      Inicio
+    </button>
   </nav>
 
   <!-- MENÚ DE PROYECTOS (CARTILLA, CATTLE, PROTOCOLOS) -->
@@ -42,15 +42,41 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main>
-    <!-- INICIO -->
+    <!-- INICIO: TARJETAS DE MATERIAS -->
     <section id="view-home" class="view view-active">
       <h2>Inicio</h2>
       <p class="view-intro">
         Bienvenido a la Mini-App Veterinaria.
-        Aquí integraremos módulos de Farmacología y Fisiología (hormonas),
-        conectados con tus proyectos Cartilla Digital, CATTLE y
-        Protocolos/Registros.
+        Elige el módulo con el que quieres estudiar:
       </p>
+
+      <div class="home-modulos">
+        <!-- Tarjeta Fisiología -->
+        <button
+          class="home-card home-card-fisio"
+          data-go-view="fisiologia"
+          type="button"
+        >
+          <div class="home-card-icon">💗</div>
+          <div class="home-card-title">Fisiología</div>
+          <div class="home-card-text">
+            Hormonas, vitaminas y funciones de los sistemas.
+          </div>
+        </button>
+
+        <!-- Tarjeta Farmacología -->
+        <button
+          class="home-card home-card-farma"
+          data-go-view="farmacologia"
+          type="button"
+        >
+          <div class="home-card-icon">💉</div>
+          <div class="home-card-title">Farmacología</div>
+          <div class="home-card-text">
+            Fármacos, dosis por especie y notas clínicas.
+          </div>
+        </button>
+      </div>
     </section>
 
     <!-- FARMACOLOGÍA (placeholder por ahora) -->
@@ -62,40 +88,69 @@
       </p>
     </section>
 
-    <!-- FISIOLOGÍA = HORMONAS -->
+    <!-- FISIOLOGÍA: SUBPANELES HORMONAS / VITAMINAS -->
     <section id="view-fisiologia" class="view">
-      <h2>Fisiología · Hormonas</h2>
+      <h2>Fisiología</h2>
       <p class="view-intro">
-        Fichas de estudio de hormonas veterinarias, organizadas por sistema,
-        con origen, funciones, patología, variaciones por especie y notas farmacológicas.
+        Módulo de estudio de fisiología veterinaria. Elige si quieres revisar
+        hormonas o vitaminas.
       </p>
 
-      <!-- BUSCADOR Y FILTROS -->
-      <div class="hormonas-toolbar">
-        <input
-          type="text"
-          id="searchHormona"
-          placeholder="Buscar por nombre o siglas (ej. progesterona, LH, T4)..."
-        />
-
-        <div class="hormonas-filtros">
-          <button class="pill-btn pill-active" data-sistema="todos">Todos</button>
-          <button class="pill-btn" data-sistema="digestivo">Digestivo</button>
-          <button class="pill-btn" data-sistema="reproductivo">Reproductivo</button>
-          <button class="pill-btn" data-sistema="endocrino-metabolico">Endocrino/Metabólico</button>
-          <button class="pill-btn" data-sistema="cardiaco-circulatorio">Cardíaco/Circulatorio</button>
-          <button class="pill-btn" data-sistema="respiratorio-cardiaco">Respiratorio/Cardíaco</button>
-          <button class="pill-btn" data-sistema="renal">Renal</button>
-          <button class="pill-btn" data-sistema="renal-metabolico">Renal/Metabólico</button>
-          <button class="pill-btn" data-sistema="inmunologico">Inmunológico</button>
-          <button class="pill-btn" data-sistema="nervioso-neuroendocrino">Nervioso/Neuroendocrino</button>
-          <button class="pill-btn" data-sistema="oseo-piel">Óseo/Piel</button>
+      <!-- SUBNAV DE FISIOLOGÍA -->
+      <div class="fisio-subnav">
+        <span class="fisio-subtitle">Módulos de fisiología</span>
+        <div class="fisio-tabs">
+          <button class="fisio-tab fisio-tab-active" data-fisio="hormonas">
+            Hormonas
+          </button>
+          <button class="fisio-tab" data-fisio="vitaminas">
+            Vitaminas
+          </button>
         </div>
       </div>
 
-      <!-- LISTA DE TARJETAS DE HORMONAS -->
-      <div id="hormonasList" class="cards-grid">
-        <!-- Se llena desde app.js -->
+      <!-- PANE HORMONAS -->
+      <div id="fisio-hormonas" class="fisio-pane fisio-pane-active">
+        <p class="view-intro">
+          Fichas de estudio de hormonas veterinarias, organizadas por sistema,
+          con origen, funciones, patología, variaciones por especie y notas farmacológicas.
+        </p>
+
+        <!-- BUSCADOR Y FILTROS -->
+        <div class="hormonas-toolbar">
+          <input
+            type="text"
+            id="searchHormona"
+            placeholder="Buscar por nombre o siglas (ej. progesterona, LH, T4)..."
+          />
+
+          <div class="hormonas-filtros">
+            <button class="pill-btn pill-active" data-sistema="todos">Todos</button>
+            <button class="pill-btn" data-sistema="digestivo">Digestivo</button>
+            <button class="pill-btn" data-sistema="reproductivo">Reproductivo</button>
+            <button class="pill-btn" data-sistema="endocrino-metabolico">Endocrino/Metabólico</button>
+            <button class="pill-btn" data-sistema="cardiaco-circulatorio">Cardíaco/Circulatorio</button>
+            <button class="pill-btn" data-sistema="respiratorio-cardiaco">Respiratorio/Cardíaco</button>
+            <button class="pill-btn" data-sistema="renal">Renal</button>
+            <button class="pill-btn" data-sistema="renal-metabolico">Renal/Metabólico</button>
+            <button class="pill-btn" data-sistema="inmunologico">Inmunológico</button>
+            <button class="pill-btn" data-sistema="nervioso-neuroendocrino">Nervioso/Neuroendocrino</button>
+            <button class="pill-btn" data-sistema="oseo-piel">Óseo/Piel</button>
+          </div>
+        </div>
+
+        <!-- LISTA DE TARJETAS DE HORMONAS -->
+        <div id="hormonasList" class="cards-grid">
+          <!-- Se llena desde app.js -->
+        </div>
+      </div>
+
+      <!-- PANE VITAMINAS (por ahora solo texto) -->
+      <div id="fisio-vitaminas" class="fisio-pane">
+        <p class="view-intro">
+          Aquí pronto podrás estudiar vitaminas (A, D, E, K, complejo B, etc.)
+          con el mismo formato de tarjetas clínicas que las hormonas.
+        </p>
       </div>
     </section>
   </main>
