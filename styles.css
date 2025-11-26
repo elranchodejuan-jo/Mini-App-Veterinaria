@@ -228,11 +228,11 @@ main {
 
 /* Colores por tarjeta */
 .home-card-fisio::before {
-  border-color: #22c55e; /* verde */
+  border-color: #d63b3b; /* verde */
 }
 
 .home-card-farma::before {
-  border-color: #3b82f6; /* azul */
+  border-color: #d4f63b; /* azul */
 }
 
 .home-card:hover {
@@ -603,7 +603,7 @@ main {
 /* ========== TARJETA MICROBIOLOGÍA EN INICIO ========== */
 
 .home-card-micro::before {
-  border-color: #22d3ee; /* cian para microbio */
+  border-color: #48e7d4; /* cian para microbio */
 }
 
 /* ========== SUBNAV MICROBIOLOGÍA ========== */
@@ -741,7 +741,7 @@ main {
 .micro-calc-block input:focus,
 .micro-calc-block select:focus {
   outline: none;
-  border-color: #22d3ee;
+  border-color: z#22d3ee;
 }
 
 .micro-calc-actions {
@@ -757,7 +757,7 @@ main {
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: #22d3ee;
+  background: #dc8f09;
   color: #020617;
   font-size: 0.85rem;
   font-weight: 600;
@@ -765,7 +765,7 @@ main {
 
 #btnCalcularMedio:hover,
 #btnCalcularCaldo:hover {
-  background: #08869c;
+  background: #e29c0f;
 }
 
 
@@ -825,7 +825,7 @@ main {
 }
 
 .card-medio-solido::before {
-  border-color: #38bdf8; /* celeste para agar sólido */
+  border-color: #10b4e1; /* celeste para agar sólido */
 }
 
 .card-medio-liquido::before {
@@ -984,7 +984,7 @@ main {
 
 #btnImprimirPreparacion:not(:disabled):hover,
 #btnImprimirCaldo:not(:disabled):hover {
-  border-color: #22d3ee;
+  border-color: rgb(196, 133, 6);
   background: rgba(34, 211, 238, 0.15);
 }
 
@@ -1057,4 +1057,60 @@ main {
 /* Tarjetas de pruebas bioquímicas: mismo estilo visual que agares */
 .card-prueba::before {
   border-color: #f97316; /* naranja para pruebas bioquímicas */
+}
+
+/* ========== MICROBIOLOGÍA: BOTONES DE FICHAS Y CÁLCULO ========== */
+
+.agar-footer-buttons {
+  margin-top: 1.3rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Estilo base de los botones inferiores de las tarjetas */
+.agar-footer-buttons button {
+  flex: 1;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #0f172a;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+  white-space: nowrap;
+}
+
+/* Botones de FICHA (agares + pruebas) */
+.btn-ficha,
+.btn-ficha-prueba {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.btn-ficha:hover,
+.btn-ficha-prueba:hover {
+  background: #111827;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+
+/* Botones de CALCULAR (agares + pruebas) */
+.btn-calcular-agar,
+.btn-calcular-prueba {
+  background: #06b6d4;
+  color: #0f172a;
+  border-color: #06b6d4;
+  font-weight: 600;
+}
+
+.btn-calcular-agar:hover,
+.btn-calcular-prueba:hover {
+  background: #22d3ee;
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.35),
+    0 14px 30px rgba(0, 0, 0, 0.6);
+  transform: translateY(-1px);
 }
