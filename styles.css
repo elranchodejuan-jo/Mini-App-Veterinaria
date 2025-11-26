@@ -494,3 +494,567 @@ main {
 .card-tipo-hidrosoluble::before {
   border-color: #3b82f6; /* azul */
 }
+
+/* ========== GLOSARIO CLÍNICO ========== */
+
+.card-glosario {
+  background: #020617;
+  border-radius: 1rem;
+  border: 1px solid #111827;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+}
+
+/* Borde lateral base */
+.card-glosario::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-color: #3b82f6; /* color por defecto */
+  pointer-events: none;
+}
+
+/* Colores por sistema */
+.card-glosario-sistema-urinario::before {
+  border-color: #cd754c; /* azul */
+}
+.card-glosario-sistema-digestivo::before {
+  border-color: #16f9d7; /* naranja */
+}
+.card-glosario-sistema-respiratorio::before {
+  border-color: #c2f838; /* celeste */
+}
+.card-glosario-sistema-cardiovascular::before {
+  border-color: #ef4444; /* rojo */
+}
+.card-glosario-sistema-neurologico::before {
+  border-color: #458dfa; /* azul violeta */
+}
+.card-glosario-sistema-dermatologico::before {
+  border-color: #d272ea; /* amarillo */
+}
+.card-glosario-sistema-sistemico::before {
+  border-color: #22c55e; /* verde brillante */
+}
+
+.card-glosario h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-glosario-meta {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.card-glosario-meta span {
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+}
+
+.card-glosario p {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+  line-height: 1.4;
+}
+
+.card-glosario p strong {
+  font-weight: 600;
+}
+
+.card-glosario details {
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+  border-top: 1px dashed #1f2937;
+}
+
+.card-glosario summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #93c5fd;
+}
+
+/* Toolbar específica (reusa estilo general) */
+.glosario-toolbar {
+  margin-top: 0.9rem;
+}
+
+.glosario-select {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #f5f5f5;
+  font-size: 0.8rem;
+}
+
+
+/* ========== TARJETA MICROBIOLOGÍA EN INICIO ========== */
+
+.home-card-micro::before {
+  border-color: #22d3ee; /* cian para microbio */
+}
+
+/* ========== SUBNAV MICROBIOLOGÍA ========== */
+
+.micro-subnav {
+  margin: 0.6rem 0 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.micro-subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.micro-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.micro-tab {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.micro-tab-active {
+  background: #22d3ee;
+  border-color: #22d3ee;
+}
+
+/* panes micro (por si en el futuro hay más módulos además de agares) */
+.micro-pane {
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.micro-pane-active {
+  display: block;
+}
+
+/* ========== TOOLBAR MICRO (BUSCADOR + FILTROS) ========== */
+
+.micro-toolbar {
+  margin: 0.9rem 0 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.micro-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.micro-select {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #f5f5f5;
+  font-size: 0.8rem;
+}
+
+.micro-toolbar input {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #f5f5f5;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.micro-toolbar input::placeholder {
+  color: #9ca3af;
+}
+
+/* ========== CALCULADORA DE MEDIO ========== */
+
+.micro-calc {
+  margin: 1rem 0 1.2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #1f2937;
+  background: #020617;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+}
+
+.micro-calc h3 {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.micro-calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+  align-items: flex-end;
+}
+
+.micro-calc-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.micro-calc-block label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.micro-calc-block input,
+.micro-calc-block select {
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  border: 1px solid #1f2933;
+  background: #020617;
+  color: #f5f5f5;
+  font-size: 0.85rem;
+}
+
+.micro-calc-block input:focus,
+.micro-calc-block select:focus {
+  outline: none;
+  border-color: #22d3ee;
+}
+
+.micro-calc-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+#btnCalcularMedio,
+#btnCalcularCaldo,
+#btnCalcularPrueba {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #22d3ee;
+  color: #020617;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+#btnCalcularMedio:hover,
+#btnCalcularCaldo:hover {
+  background: #08869c;
+}
+
+
+.micro-calc-result {
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.micro-calc-result ul {
+  margin: 0.4rem 0 0.3rem;
+  padding-left: 1.1rem;
+}
+
+.micro-calc-result li {
+  margin-bottom: 0.2rem;
+}
+
+.micro-calc-note {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+/* Mostrar/ocultar campos según modo (sólido / líquido) */
+.calc-solido-opcion {
+  display: block;
+}
+
+.calc-liquido-opcion {
+  display: none;
+}
+
+/* ========== TARJETAS DE AGARES / CALDOS ========== */
+
+.card-agar {
+  background: #020617;
+  border-radius: 1rem;
+  border: 1px solid #111827;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+/* Borde lateral según si es sólido o líquido */
+.card-agar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-color: transparent;
+  pointer-events: none;
+}
+
+.card-medio-solido::before {
+  border-color: #38bdf8; /* celeste para agar sólido */
+}
+
+.card-medio-liquido::before {
+  border-color: #22c55e; /* verde para caldos */
+}
+
+.card-agar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.card-agar-nombre {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-agar-marca {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.badge-medio {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e5e7eb;
+}
+
+.card-agar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.badge-tipo {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  font-size: 0.7rem;
+  color: #e5e7eb;
+}
+
+.card-agar-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.agar-item-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+}
+
+.agar-item-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Botones inferiores: ficha técnica / calcular medio */
+.agar-footer-buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.btn-ficha,
+.btn-calcular-agar {
+  flex: 1;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btn-ficha:hover {
+  border-color: #22d3ee;
+}
+
+.btn-calcular-agar {
+  background: rgba(34, 211, 238, 0.16);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.btn-calcular-agar:hover {
+  background: rgba(34, 211, 238, 0.3);
+}
+
+/* Detalles técnicos (ocultos por defecto) */
+.card-agar-detalles {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #1f2937;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  display: none;
+}
+
+.card-agar-detalles.activo {
+  display: block;
+}
+
+.card-agar-detalles h4 {
+  margin: 0.35rem 0 0.2rem;
+  font-size: 0.85rem;
+}
+
+.card-agar-detalles ul,
+.card-agar-detalles ol {
+  padding-left: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.micro-empty {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* Botones de la calculadora: ajustar para 2 botones */
+.micro-calc-actions {
+  flex-direction: row;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Botón "Imprimir preparación" */
+
+#btnImprimirPreparacion,
+#btnImprimirCaldo,
+#btnImprimirPrueba {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+#btnImprimirPreparacion:disabled,
+#btnImprimirCaldo:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+#btnImprimirPreparacion:not(:disabled):hover,
+#btnImprimirCaldo:not(:disabled):hover {
+  border-color: #22d3ee;
+  background: rgba(34, 211, 238, 0.15);
+}
+
+
+/* Área de impresión (invisible normalmente) */
+.print-prep {
+  display: none;
+}
+
+/* ESTILOS DE IMPRESIÓN: etiqueta + ficha para PDF */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #printPrep,
+  #printPrep * {
+    visibility: visible;
+  }
+
+  #printPrep {
+    display: block;
+    position: absolute;
+    inset: 0;
+    padding: 12mm;
+    background: #ffffff;
+    color: #000000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      sans-serif;
+    font-size: 11pt;
+  }
+
+  .print-label {
+    border: 1px solid #000;
+    padding: 6mm;
+    margin-bottom: 8mm;
+  }
+
+  .print-label h1 {
+    font-size: 18pt;
+    margin: 0 0 3mm;
+  }
+
+  .print-label p {
+    margin: 1.5mm 0;
+  }
+
+  .print-info h2 {
+    font-size: 14pt;
+    margin: 0 0 3mm;
+  }
+
+  .print-info h3 {
+    font-size: 12pt;
+    margin: 3mm 0 1.5mm;
+  }
+
+  .print-info p,
+  .print-info li {
+    font-size: 11pt;
+  }
+}
+
+/* Tarjetas de pruebas bioquímicas: mismo estilo visual que agares */
+.card-prueba::before {
+  border-color: #f97316; /* naranja para pruebas bioquímicas */
+}

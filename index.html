@@ -2,15 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mini-App Veterinaria</title>
+  <title>SUITE VET</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- JS general (hormonas / vitaminas / navegación) -->
   <script src="app.js" defer></script>
+  <!-- JS del glosario clínico -->
+  <script src="glosario.js" defer></script>
+  <!-- JS de Microbiología -->
+  <script src="micro.js" defer></script>
 </head>
 <body>
   <!-- TOPBAR -->
   <header class="topbar">
-    <h1>Mini-App Veterinaria</h1>
+    <h1>SUITE VET</h1>
   </header>
 
   <!-- NAV SUPERIOR: MENÚ + INICIO -->
@@ -46,7 +51,7 @@
     <section id="view-home" class="view view-active">
       <h2>Inicio</h2>
       <p class="view-intro">
-        Bienvenido a la Mini-App Veterinaria.
+        Bienvenido a SUITE VET.
         Elige el módulo con el que quieres estudiar:
       </p>
 
@@ -76,6 +81,19 @@
             Fármacos, dosis por especie y notas clínicas.
           </div>
         </button>
+
+        <!-- Tarjeta Microbiología -->
+        <button
+          class="home-card home-card-micro"
+          data-go-view="microbiologia"
+          type="button"
+        >
+          <div class="home-card-icon">🧫</div>
+          <div class="home-card-title">Microbiología</div>
+          <div class="home-card-text">
+            Agares, caldos y cálculo rápido de medios de cultivo.
+          </div>
+        </button>
       </div>
     </section>
 
@@ -88,12 +106,267 @@
       </p>
     </section>
 
-    <!-- FISIOLOGÍA: SUBPANELES HORMONAS / VITAMINAS -->
+        <!-- MICROBIOLOGÍA: AGARES / CALDOS / PRUEBAS -->
+    <section id="view-microbiologia" class="view">
+      <h2>Microbiología</h2>
+      <p class="view-intro">
+        Módulo de agares, caldos y pruebas bioquímicas: buscador, calculadora
+        de medio y fichas técnicas resumidas para preparar tus placas, caldos
+        y reportes de práctica.
+      </p>
+
+      <!-- SUBNAV MICRO: MÓDULOS -->
+      <div class="micro-subnav">
+        <span class="micro-subtitle">Módulos de microbiología</span>
+        <div class="micro-tabs">
+          <button class="micro-tab micro-tab-active" data-micro="agares">
+            Agares
+          </button>
+          <button class="micro-tab" data-micro="caldos">
+            Caldos
+          </button>
+          <button class="micro-tab" data-micro="pruebas">
+            Pruebas bioquímicas
+          </button>
+        </div>
+      </div>
+
+      <!-- PANE: AGARES (buscador + calculadora + tarjetas) -->
+      <div id="micro-agares" class="micro-pane micro-pane-active">
+        <p class="view-intro">
+          Aquí gestionas medios sólidos (agar) para placas.
+          Busca por nombre o tipo, calcula cuántos gramos necesitas y abre la
+          ficha técnica solo cuando requieras más detalle.
+        </p>
+
+        <!-- BUSCADOR + FILTRO POR TIPO -->
+        <div class="micro-toolbar">
+          <div class="micro-toolbar-row">
+            <select id="filtroTipoMedio" class="micro-select">
+              <option value="">Todos los tipos</option>
+              <option value="selectivo">Selectivo</option>
+              <option value="diferencial">Diferencial</option>
+              <option value="enriquecido">Enriquecido</option>
+              <option value="cromogenico">Cromogénico</option>
+              <option value="transporte">Transporte</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            id="searchMedio"
+            placeholder="Buscar por nombre, tipo o uso del medio..."
+          />
+        </div>
+
+        <!-- CALCULADORA DE AGAR (PLACAS SÓLIDAS) -->
+        <section id="microCalc" class="micro-calc">
+          <h3>Calculadora de agar (placas sólidas)</h3>
+          <div class="micro-calc-grid">
+            <div class="micro-calc-block">
+              <label for="calcMedio">Medio</label>
+              <select id="calcMedio"></select>
+            </div>
+
+            <div class="micro-calc-block">
+              <label for="tamPlaca">Volumen por placa</label>
+              <select id="tamPlaca">
+                <option value="25">Placa grande (≈25 mL)</option>
+                <option value="10">Placa pequeña (≈10 mL)</option>
+              </select>
+            </div>
+
+            <div class="micro-calc-block">
+              <label for="numPlacas">Número de placas</label>
+              <input
+                type="number"
+                id="numPlacas"
+                min="1"
+                value="10"
+              />
+            </div>
+
+            <div class="micro-calc-block micro-calc-actions">
+              <button id="btnCalcularMedio" type="button">
+                Calcular medio
+              </button>
+              <button
+                id="btnImprimirPreparacion"
+                type="button"
+                disabled
+              >
+                Imprimir preparación
+              </button>
+            </div>
+          </div>
+
+          <div id="resultadoCalcMedio" class="micro-calc-result">
+            <!-- Resultado de la calculadora -->
+          </div>
+        </section>
+
+        <!-- TARJETAS DE MEDIOS (AGARES) -->
+        <div id="agarCards" class="cards-grid">
+          <!-- Se llena desde micro.js -->
+        </div>
+      </div>
+
+      <!-- PANE: CALDOS -->
+      <div id="micro-caldos" class="micro-pane">
+        <p class="view-intro">
+          Aquí organizas tus <strong>caldos</strong> más usados
+          (caldo nutriente, BHI, etc.). Busca por nombre o tipo,
+          calcula cuántos gramos necesitas para un volumen en mL
+          y genera la ficha para tu matraz e informe.
+        </p>
+
+        <!-- BUSCADOR + FILTRO POR TIPO -->
+        <div class="micro-toolbar">
+          <div class="micro-toolbar-row">
+            <select id="filtroTipoCaldo" class="micro-select">
+              <option value="">Todos los tipos</option>
+              <option value="basico">Básico</option>
+              <option value="enriquecido">Enriquecido</option>
+              <option value="selectivo">Selectivo</option>
+              <option value="diferencial">Diferencial</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            id="searchCaldo"
+            placeholder="Buscar por nombre, tipo o uso del caldo..."
+          />
+        </div>
+
+        <!-- CALCULADORA DE CALDO (VOLUMEN EN ML) -->
+        <section id="microCalcCaldo" class="micro-calc">
+          <h3>Calculadora de caldo (volumen en mL)</h3>
+          <div class="micro-calc-grid">
+            <div class="micro-calc-block">
+              <label for="calcCaldoMedio">Medio</label>
+              <select id="calcCaldoMedio"></select>
+            </div>
+
+            <div class="micro-calc-block">
+              <label for="volCaldoTotal">Volumen total (mL)</label>
+              <input
+                type="number"
+                id="volCaldoTotal"
+                min="1"
+                value="500"
+              />
+            </div>
+
+            <div class="micro-calc-block micro-calc-actions">
+              <button id="btnCalcularCaldo" type="button">
+                Calcular medio
+              </button>
+              <button
+                id="btnImprimirCaldo"
+                type="button"
+                disabled
+              >
+                Imprimir preparación
+              </button>
+            </div>
+          </div>
+
+          <div id="resultadoCalcCaldo" class="micro-calc-result">
+            <!-- Resultado de la calculadora de caldos -->
+          </div>
+        </section>
+
+        <!-- TARJETAS DE CALDOS -->
+        <div id="caldoCards" class="cards-grid">
+          <!-- Se llena desde micro.js -->
+        </div>
+      </div>
+
+            <!-- PANE: PRUEBAS BIOQUÍMICAS -->
+      <div id="micro-pruebas" class="micro-pane">
+        <h3>Pruebas bioquímicas (TSI, Citrato, LIA, etc.)</h3>
+        <p class="view-intro">
+          Fichas de pruebas como TSI, Citrato Simmons y LIA:
+          principio, lectura de colores y utilidad en el laboratorio.
+          Además puedes calcular cuántos gramos de medio necesitas según el
+          volumen que vayas a preparar.
+        </p>
+
+        <!-- BUSCADOR + FILTRO POR CATEGORÍA -->
+        <div class="micro-toolbar">
+          <div class="micro-toolbar-row">
+            <select id="filtroTipoPrueba" class="micro-select">
+              <option value="">Todas las categorías</option>
+              <option value="fermentacion">Fermentación de carbohidratos</option>
+              <option value="citrato">Utilización de citrato</option>
+              <option value="lisina">Descarboxilación de lisina</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            id="searchPrueba"
+            placeholder="Buscar por nombre, sigla o finalidad..."
+          />
+        </div>
+
+        <!-- CALCULADORA DE MEDIO PARA PRUEBAS (VOLUMEN EN ML) -->
+        <section id="microCalcPrueba" class="micro-calc">
+          <h3>Calculadora de medio para pruebas (volumen en mL)</h3>
+          <div class="micro-calc-grid">
+            <div class="micro-calc-block">
+              <label for="calcPruebaMedio">Prueba / medio</label>
+              <select id="calcPruebaMedio"></select>
+            </div>
+
+            <div class="micro-calc-block">
+              <label for="volPruebaTotal">Volumen total (mL)</label>
+              <input
+                type="number"
+                id="volPruebaTotal"
+                min="1"
+                value="200"
+              />
+            </div>
+
+            <div class="micro-calc-block micro-calc-actions">
+              <button id="btnCalcularPrueba" type="button">
+                Calcular medio
+              </button>
+              <button
+                id="btnImprimirPrueba"
+                type="button"
+                disabled
+              >
+                Imprimir preparación
+              </button>
+            </div>
+          </div>
+
+          <div id="resultadoCalcPrueba" class="micro-calc-result">
+            <!-- Resultado de la calculadora de pruebas -->
+          </div>
+        </section>
+
+        <!-- TARJETAS DE PRUEBAS BIOQUÍMICAS -->
+        <div id="pruebasCards" class="cards-grid">
+          <!-- Se llena desde micro.js -->
+        </div>
+      </div>
+
+
+      <!-- ÁREA OCULTA PARA IMPRESIÓN (PDF/ETIQUETA) -->
+      <div id="printPrep" class="print-prep"></div>
+    </section>
+
+
+    <!-- FISIOLOGÍA: SUBPANELES HORMONAS / VITAMINAS / GLOSARIO -->
     <section id="view-fisiologia" class="view">
       <h2>Fisiología</h2>
       <p class="view-intro">
         Módulo de estudio de fisiología veterinaria. Elige si quieres revisar
-        hormonas o vitaminas.
+        hormonas, vitaminas o el glosario clínico.
       </p>
 
       <!-- SUBNAV DE FISIOLOGÍA -->
@@ -105,6 +378,9 @@
           </button>
           <button class="fisio-tab" data-fisio="vitaminas">
             Vitaminas
+          </button>
+          <button class="fisio-tab" data-fisio="glosario">
+            Glosario clínico
           </button>
         </div>
       </div>
@@ -152,7 +428,6 @@
           hipovitaminosis, hipervitaminosis, variación por especie y notas farmacológicas.
         </p>
 
-        <!-- BUSCADOR DE VITAMINAS -->
         <div class="hormonas-toolbar vitaminas-toolbar">
           <input
             type="text"
@@ -161,9 +436,41 @@
           />
         </div>
 
-        <!-- LISTA DE TARJETAS DE VITAMINAS -->
         <div id="vitaminasList" class="cards-grid">
           <!-- Se llena desde app.js -->
+        </div>
+      </div>
+
+      <!-- PANE GLOSARIO CLÍNICO -->
+      <div id="fisio-glosario" class="fisio-pane">
+        <p class="view-intro">
+          Glosario clínico con términos como disuria, poliuria, prurito, etc.,
+          organizados por sistema corporal y categoría.
+        </p>
+
+        <div class="hormonas-toolbar glosario-toolbar">
+          <input
+            type="text"
+            id="searchGlosario"
+            placeholder="Buscar término (ej. disuria, poliuria, prurito)..."
+          />
+
+          <div class="hormonas-filtros">
+            <select id="glosarioSistema" class="glosario-select">
+              <option value="">Todos los sistemas</option>
+              <option value="Urinario">Urinario</option>
+              <option value="Digestivo">Digestivo</option>
+              <option value="Respiratorio">Respiratorio</option>
+              <option value="Cardiovascular">Cardiovascular</option>
+              <option value="Neurológico">Neurológico</option>
+              <option value="Dermatológico">Dermatológico</option>
+              <option value="Sistémico">Sistémico</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="glosarioList" class="cards-grid">
+          <!-- Se llena desde glosario.js -->
         </div>
       </div>
     </section>
