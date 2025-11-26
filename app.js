@@ -413,6 +413,78 @@ document.addEventListener("DOMContentLoaded", () => {
       afeccionesFarmaco:
         "EPO recombinante puede inducir anticuerpos."
     },
+    {
+  nombre: "Renina",
+  sigla: "REN",
+  sistema: "Renal",
+  sistemaKey: "renal",
+  origenLiberacion:
+    "Producción: células yuxtaglomerulares del riñón. Liberación: sangre.",
+  funcionPrincipal: "Activa el sistema renina–angiotensina–aldosterona (RAAS).",
+  funcionSecundaria:
+    "Contribuye a mantener la presión arterial y la perfusión renal.",
+  patologia:
+    "↑: hipertensión de origen renal, IC. ↓: hipotensión, hipoperfusión renal.",
+  especieVariacion:
+    "En perros y gatos con ERC puede estar aumentada, favoreciendo la hipertensión.",
+  afeccionesFarmaco:
+    "IECA, ARA II y betabloqueantes modulan el RAAS y la acción de la renina."
+},
+{
+  nombre: "Calcitriol",
+  sigla: "1,25(OH)2D3",
+  sistema: "Renal",
+  sistemaKey: "renal",
+  origenLiberacion:
+    "Producción: túbulos proximales (hidroxilación de vitamina D). Liberación: sangre.",
+  funcionPrincipal:
+    "Regula el metabolismo de calcio y fósforo, aumenta la absorción intestinal.",
+  funcionSecundaria:
+    "Favorece la mineralización ósea y modula la secreción de PTH.",
+  patologia:
+    "↓: hiperparatiroidismo secundario renal, osteodistrofia. ↑: hipercalcemia y calcificaciones.",
+  especieVariacion:
+    "Perros y gatos con ERC suelen presentar disminución de calcitriol circulante.",
+  afeccionesFarmaco:
+    "Suplementos de vitamina D/calcitriol y glucocorticoides alteran su metabolismo."
+},
+{
+  nombre: "Prostaglandinas renales",
+  sigla: "PGs",
+  sistema: "Renal",
+  sistemaKey: "renal",
+  origenLiberacion:
+    "Producción: células renales (túbulos y vasos). Liberación local y a la sangre.",
+  funcionPrincipal:
+    "Mantienen el flujo sanguíneo renal y la filtración glomerular (vasodilatación).",
+  funcionSecundaria:
+    "Modulan la liberación de renina y el manejo de sodio y agua.",
+  patologia:
+    "↓ por inhibición: riesgo de isquemia y lesión renal aguda, sobre todo en deshidratación o ERC.",
+  especieVariacion:
+    "Perros y gatos son sensibles a la reducción de PGs bajo tratamiento con AINE.",
+  afeccionesFarmaco:
+    "Los AINE inhiben COX y la síntesis de PGs, aumentando el riesgo de nefrotoxicidad."
+},
+{
+  nombre: "Klotho",
+  sigla: "KL",
+  sistema: "Renal",
+  sistemaKey: "renal",
+  origenLiberacion:
+    "Producción: principalmente túbulos renales. Liberación: forma de membrana y soluble en sangre.",
+  funcionPrincipal:
+    "Co-receptor de FGF23, regula el metabolismo del fósforo y la vitamina D.",
+  funcionSecundaria:
+    "Efecto protector frente al envejecimiento, estrés oxidativo y daño vascular.",
+  patologia:
+    "↓: favorece hiperfosfatemia, calcificación vascular y progresión de la ERC.",
+  especieVariacion:
+    "Se ha observado disminución de Klotho en estadios avanzados de ERC en pequeños animales.",
+  afeccionesFarmaco:
+    "Control del fósforo dietético y quelantes fosfato buscan compensar alteraciones asociadas a bajo Klotho."
+},
+
 
     // RENAL / METABÓLICO
     {
