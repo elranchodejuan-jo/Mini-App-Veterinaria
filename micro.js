@@ -2,6 +2,7 @@
 // Datos base de microbiología: agares, caldos y pruebas bioquímicas.
 // AGARES (medios sólidos para placas)
 const mediosAgar = [
+  
   {
   id: 'bismuth-sulphite-agar',
   nombre: 'Bismuth Sulphite Agar',
@@ -715,7 +716,85 @@ const mediosAgar = [
   certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · IVD · GMP.',
   observaciones:
     'Las cepas fluorescentes producen pigmento verde-amarillo visible bajo luz UV.'
+},
+{
+  id: 'stuart-transport-medium',
+  nombre: 'Stuart Transport Medium',
+  marca: 'TM Media',
+  estado: 'solido', // semisólido de transporte
+  tipos: ['transporte', 'no nutritivo', 'semisolido'],
+  gramosPorLitro: 14.1,
+  phFinal: '7.4 ± 0.2 (25 °C)',
+  presentacion: 'Tubo con medio semisólido',
+  objetivo:
+    'Medio de transporte semisólido, no nutritivo, para preservar la viabilidad de microorganismos (incluyendo Neisseria y otros fastidiosos) durante el envío al laboratorio sin que proliferen en exceso.',
+  composicion: [
+    { componente: 'Sodium glycerophosphate', gL: 10.0 },
+    { componente: 'Sodium thioglycollate', gL: 1.0 },
+    { componente: 'Calcium chloride', gL: 0.1 },
+    { componente: 'Methylene blue', gL: 0.002 },
+    { componente: 'Agar', gL: 3.0 }
+  ],
+  almacenamiento:
+    'Conservar el polvo entre 10–25 °C, bien cerrado y protegido de la humedad. Los tubos preparados se mantienen refrigerados (2–8 °C) y al abrigo de la luz.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · CE · IVD · GMP.',
+  observaciones:
+    'Semisólido, no nutritivo. Se usa con hisopos para transporte de muestras faríngeas, vaginales, uretrales, etc.'
+},
+{
+  id: 'amies-transport-medium-charcoal',
+  nombre: 'Amies Transport Medium with Charcoal',
+  marca: 'TM Media',
+  estado: 'solido', // semisólido de transporte
+  tipos: ['transporte', 'semisolido'],
+  gramosPorLitro: 19.8,
+  phFinal: '7.2 ± 0.2 (25 °C)',
+  presentacion: 'Tubo con medio semisólido',
+  objetivo:
+    'Medio de transporte semisólido para la preservación de microorganismos aerobios, anaerobios y fastidiosos. El carbón neutraliza sustancias tóxicas y mejora la supervivencia bacteriana.',
+  composicion: [
+    { componente: 'Sodium chloride', gL: 3.0 },
+    { componente: 'Potassium chloride', gL: 0.2 },
+    { componente: 'Calcium chloride', gL: 0.1 },
+    { componente: 'Magnesium chloride', gL: 0.1 },
+    { componente: 'Monopotassium phosphate', gL: 0.2 },
+    { componente: 'Disodium phosphate', gL: 1.15 },
+    { componente: 'Sodium thioglycollate', gL: 1.0 },
+    { componente: 'Charcoal', gL: 10.0 },
+    { componente: 'Agar', gL: 4.0 }
+  ],
+  almacenamiento:
+    'Conservar el polvo entre 10–25 °C, protegido de la humedad. Tubos preparados: refrigerados y bien tapados.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · CE · IVD · GMP.',
+  observaciones:
+    'Medio de transporte muy usado en hisopos comerciales. Adecuado para muestras de heridas, piel, faringe, tracto genital, etc.'
+},
+{
+  id: 'cary-blair-transport-medium',
+  nombre: 'Cary-Blair Transport Medium',
+  marca: 'TM Media',
+  estado: 'solido', // semisólido de transporte
+  tipos: ['transporte', 'semisolido', 'enterico'],
+  gramosPorLitro: 12.6,
+  phFinal: '8.4 ± 0.2 (25 °C)',
+  presentacion: 'Tubo con medio semisólido',
+  objetivo:
+    'Medio de transporte semisólido de baja nutrición para conservar bacterias entéricas patógenas (Salmonella, Shigella, Vibrio, Campylobacter, etc.) en muestras fecales y rectales.',
+  composicion: [
+    { componente: 'Disodium hydrogen phosphate', gL: 1.1 },
+    { componente: 'Sodium thioglycollate', gL: 1.5 },
+    { componente: 'Sodium chloride', gL: 5.0 },
+    { componente: 'Calcium chloride', gL: 0.1 },
+    { componente: 'Agar', gL: 5.0 }
+  ],
+  almacenamiento:
+    'Polvo deshidratado: conservar entre 10–25 °C en lugar seco. Tubos preparados: refrigerados y protegidos de la desecación.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · CE · IVD · GMP.',
+  observaciones:
+    'Baja carga nutritiva para evitar sobrecrecimiento pero mantener viables a las bacterias entéricas patógenas durante el transporte.'
 }
+
+
 
 ];
 
