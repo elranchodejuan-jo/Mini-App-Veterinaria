@@ -3,6 +3,157 @@
 // AGARES (medios sólidos para placas)
 const mediosAgar = [
   {
+  id: 'bismuth-sulphite-agar',
+  nombre: 'Bismuth Sulphite Agar',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['selectivo', 'diferencial'],
+  gramosPorLitro: 52.33,
+  phFinal: '7.7 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Aislamiento selectivo de Salmonella spp. en muestras fecales, urinarias, alimentos y aguas.',
+  composicion: [
+    { componente: 'Peptone', gL: 10.0 },
+    { componente: 'Beef extract', gL: 5.0 },
+    { componente: 'Dextrose', gL: 5.0 },
+    { componente: 'Disodium phosphate', gL: 4.0 },
+    { componente: 'Ferrous sulphate', gL: 0.3 },
+    { componente: 'Bismuth sulphite indicator', gL: 8.0 },
+    { componente: 'Brilliant green', gL: 0.025 },
+    { componente: 'Agar', gL: 20.0 }
+  ],
+  almacenamiento:
+    'Conservar en lugar fresco (10–25 °C), seco y protegido de la luz.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · IVD · GMP.',
+  observaciones:
+    'No autoclavar. La esterilización por filtración o calentamiento excesivo disminuye la selectividad. Colonias típicas negras o con brillo metálico.'
+},
+{
+  id: 'pseudomonas-agar-f',
+  nombre: 'Pseudomonas Agar F (For Fluorescein)',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['selectivo', 'diferencial'],
+  gramosPorLitro: 38.0,
+  phFinal: '7.0 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Detección de fluoresceína para identificación presuntiva de Pseudomonas spp., especialmente P. aeruginosa.',
+  composicion: [
+    { componente: 'Casein enzymic hydrolysate', gL: 10.0 },
+    { componente: 'Proteose peptone', gL: 10.0 },
+    { componente: 'Dipotasium phosphate', gL: 1.5 },
+    { componente: 'Magnesium sulphate', gL: 1.5 },
+    { componente: 'Agar', gL: 15.0 }
+  ],
+  almacenamiento:
+    'Conservar entre 10–25 °C, bien cerrado, protegido de humedad y luz.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · IVD · GMP.',
+  observaciones:
+    'Las cepas fluorescentes producen pigmento verde-amarillo visible bajo luz UV.'
+},
+{
+  id: 'agar-agar-powder',
+  nombre: 'Agar Agar Powder (Bacteriological Grade)',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['solidificante'],
+  gramosPorLitro: 15.0,
+  phFinal: 'Neutro',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Agente solidificante base para la preparación de medios microbiológicos.',
+  composicion: [
+    { componente: 'Agar', gL: 15.0 }
+  ],
+  almacenamiento:
+    'Conservar en recipiente hermético, seco y a temperatura ambiente.',
+  certificaciones: 'ISO 9001:2015 · ISO 13485:2016 · GMP.',
+  observaciones:
+    'No es un medio de cultivo. Se utiliza como base para formular medios sólidos.'
+},
+{
+  id: 'phenylalanine-agar',
+  nombre: 'Phenylalanine Agar',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['diferencial'],
+  gramosPorLitro: 26.0,
+  phFinal: '7.3 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Diferenciación de Proteus, Morganella y Providencia mediante desaminación de fenilalanina.',
+  composicion: [
+    { componente: 'Agar', gL: 15.0 },
+    { componente: 'Sodium chloride', gL: 5.0 },
+    { componente: 'Yeast extract', gL: 3.0 },
+    { componente: 'DL-Phenylalanine', gL: 2.0 },
+    { componente: 'Disodium phosphate', gL: 1.0 }
+  ],
+  almacenamiento:
+    'Conservar entre 10–25 °C en envase bien cerrado.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · GMP.',
+  observaciones:
+    'La desaminación positiva se evidencia con cloruro férrico, produciendo color verde.'
+},
+{
+  id: 'tsi-agar',
+  nombre: 'Triple Sugar Iron Agar',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['diferencial'],
+  gramosPorLitro: 64.5,
+  phFinal: '7.4 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Diferenciación de enterobacterias basado en fermentación de carbohidratos y producción de H₂S.',
+  composicion: [
+    { componente: 'Agar', gL: 12.0 },
+    { componente: 'Lactose', gL: 10.0 },
+    { componente: 'Peptic digest of animal tissue', gL: 10.0 },
+    { componente: 'Casein enzymatic hydrolysate', gL: 10.0 },
+    { componente: 'Sucrose', gL: 10.0 },
+    { componente: 'Sodium chloride', gL: 5.0 },
+    { componente: 'Yeast extract', gL: 3.0 },
+    { componente: 'Beef extract', gL: 3.0 },
+    { componente: 'Dextrose', gL: 1.0 },
+    { componente: 'Sodium thiosulphate', gL: 0.3 },
+    { componente: 'Ferrous sulphate', gL: 0.2 },
+    { componente: 'Phenol red', gL: 0.024 }
+  ],
+  almacenamiento:
+    'Conservar seco y a temperatura ambiente.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · GMP.',
+  observaciones:
+    'Reacciones: rojo/amarillo, gas, producción de sulfuro de hidrógeno (precipitado negro).'
+},
+{
+  id: 'endo-agar',
+  nombre: 'Endo Agar',
+  marca: 'Merck',
+  estado: 'solido',
+  tipos: ['selectivo', 'diferencial'],
+  gramosPorLitro: 39.0,
+  phFinal: '7.4 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Aislamiento de coliformes y diferenciación por fermentación de lactosa.',
+  composicion: [
+    { componente: 'Peptone', gL: 10.0 },
+    { componente: 'Lactose', gL: 10.0 },
+    { componente: 'Sodium sulphite', gL: 2.5 },
+    { componente: 'Basic fuchsin', gL: 0.5 },
+    { componente: 'Agar', gL: 15.0 }
+  ],
+  almacenamiento:
+    'Proteger de luz y humedad.',
+  certificaciones: 'ISO · CE · GMP.',
+  observaciones:
+    'E. coli produce colonias con brillo metálico verde'
+},
+
+  {
   id: 'soya-casein-digest-agar',
   nombre: 'Soya Casein Digest Agar (Tryptone Soya Agar / CASO Agar)',
   marca: 'TM Media',
@@ -540,12 +691,108 @@ const mediosAgar = [
   certificaciones: '',
   observaciones:
     'Colonias verde-azuladas fluorescentes características de P. aeruginosa.'
+},
+{
+  id: 'pseudomonas-agar-f',
+  nombre: 'Pseudomonas Agar F (For Fluorescein)',
+  marca: 'TM Media',
+  estado: 'solido',
+  tipos: ['selectivo', 'diferencial'],
+  gramosPorLitro: 38.0,
+  phFinal: '7.0 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Detección de fluoresceína para identificación presuntiva de Pseudomonas spp., especialmente P. aeruginosa.',
+  composicion: [
+    { componente: 'Casein enzymic hydrolysate', gL: 10.0 },
+    { componente: 'Proteose peptone', gL: 10.0 },
+    { componente: 'Dipotasium phosphate', gL: 1.5 },
+    { componente: 'Magnesium sulphate', gL: 1.5 },
+    { componente: 'Agar', gL: 15.0 }
+  ],
+  almacenamiento:
+    'Conservar entre 10–25 °C, bien cerrado, protegido de humedad y luz.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · ISO 13485:2016 · CE · IVD · GMP.',
+  observaciones:
+    'Las cepas fluorescentes producen pigmento verde-amarillo visible bajo luz UV.'
 }
+
 ];
 
 
 // CALDOS (medios líquidos)
 const mediosCaldo = [
+  {
+  id: 'tryptone-broth',
+  nombre: 'Tryptone Broth (Tryptone Water)',
+  marca: 'TM Media',
+  estado: 'liquido',
+  tipos: ['diferencial', 'prueba bioquímica'],
+  gramosPorLitro: 15.0,
+  phFinal: '7.5 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Detección de producción de indol por metabolismo del triptófano.',
+  composicion: [
+    { componente: 'Casein enzymatic hydrolysate', gL: 10.0 },
+    { componente: 'Sodium chloride', gL: 5.0 }
+  ],
+  almacenamiento:
+    'Mantener seco, protegido de luz.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · GMP.',
+  observaciones:
+    'El reactivo de Kovacs produce color rojo en pruebas positivas.'
+},
+{
+  id: 'soya-casein-digest-medium',
+  nombre: 'Soya Casein Digest Medium (TSB / Caso Broth)',
+  marca: 'TM Media',
+  estado: 'liquido',
+  tipos: ['nutritivo', 'uso general'],
+  gramosPorLitro: 30.0,
+  phFinal: '7.3 ± 0.2 (25 °C)',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Medio universal para cultivo de bacterias exigentes y no exigentes.',
+  composicion: [
+    { componente: 'Pancreatic digest of casein', gL: 17.0 },
+    { componente: 'Papaic digest of soyabean', gL: 3.0 },
+    { componente: 'Dextrose', gL: 2.5 },
+    { componente: 'Dipotassium phosphate', gL: 2.5 },
+    { componente: 'Sodium chloride', gL: 5.0 }
+  ],
+  almacenamiento:
+    'Lugar seco, entre 10–25 °C.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · CE · GMP.',
+  observaciones:
+    'Admitido para pruebas de esterilidad y control microbiológico.'
+},
+{
+  id: 'tetrathionate-broth-base',
+  nombre: 'Tetrathionate Broth Base',
+  marca: 'TM Media',
+  estado: 'liquido',
+  tipos: ['selectivo', 'enriquecimiento'],
+  gramosPorLitro: 77.4,
+  phFinal: '7.4 ± 0.2',
+  presentacion: 'Frasco 500 g',
+  objetivo:
+    'Enriquecimiento selectivo de Salmonella spp. en muestras clínicas y ambientales.',
+  composicion: [
+    { componente: 'Sodium thiosulphate', gL: 40.7 },
+    { componente: 'Calcium carbonate', gL: 25.0 },
+    { componente: 'Peptic digest of animal tissue', gL: 4.5 },
+    { componente: 'Sodium chloride', gL: 4.5 },
+    { componente: 'Yeast extract', gL: 1.8 },
+    { componente: 'Beef extract', gL: 0.9 }
+  ],
+  almacenamiento:
+    'Mantener protegido de la humedad. Activar con solución yodo-yoduro antes de usar.',
+  certificaciones: 'ISO 9001:2015 · ISO 11133:2014 · CE · GMP.',
+  observaciones:
+    'No se autoclavar tras activación. Usar el mismo día de preparación.'
+},
+
   {
   id: 'mueller-hinton-broth',
   nombre: 'Mueller Hinton Broth',
