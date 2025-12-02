@@ -3,38 +3,69 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body {
-  background: #020617; /* azul muy oscuro */
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #000 100%);
   color: #f9fafb;
   min-height: 100vh;
+  line-height: 1.5;
 }
 
-/* Paleta Apple-like global */
+/* Paleta Global */
 :root {
   --apple-blue: #007aff;
   --apple-blue-hover: #0060d1;
   --apple-blue-shadow: rgba(0, 122, 255, 0.45);
+
+  /* Colores para tarjetas */
+  --color-selectivo: #f43f5e;
+  --color-diferencial: #a855f7;
+  --color-nutritivo: #22c55e;
+  --color-enriquecido: #eab308;
+  --color-basico: #3b82f6;
+  --color-transporte: #06b6d4;
+}
+
+/* Scrollbar discreta en modo oscuro (WebKit) */
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1f2937 #020617;
 }
 
 /* ========== TOPBAR ========== */
-
 .topbar {
   padding: 1rem;
   border-bottom: 1px solid #111827;
   text-align: center;
+  background: linear-gradient(to right, #020617, #020b3a);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-
 .topbar h1 {
   font-size: 1.6rem;
   letter-spacing: 0.03em;
 }
 
 /* ========== NAV PRINCIPAL ========== */
-
 .nav {
   display: flex;
   align-items: center;
@@ -42,12 +73,8 @@ body {
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #111827;
   overflow-x: auto;
+  backdrop-filter: blur(10px);
 }
-
-.nav-top {
-  justify-content: flex-start;
-}
-
 .nav-btn {
   padding: 0.5rem 1rem;
   border-radius: 999px;
@@ -57,18 +84,24 @@ body {
   color: #e5e7eb;
   font-size: 0.9rem;
   white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.12s ease;
 }
-
+.nav-btn:hover {
+  background: #1f2937;
+  color: #f9fafb;
+}
 .nav-btn.nav-active {
-  background: #3b82f6;
+  background: var(--apple-blue);
+  color: #f9fafb;
+  box-shadow: 0 12px 30px var(--apple-blue-shadow);
+  transform: translateY(-1px);
 }
-
 .nav-primary {
   margin-left: 0.5rem;
 }
 
-/* ========== BOTÓN HAMBURGUESA (3 rayas → X) ========== */
-
+/* MENÚ HAMBURGUESA */
 .nav-icon-btn {
   position: relative;
   width: 40px;
@@ -82,8 +115,13 @@ body {
   padding: 0;
   cursor: pointer;
   flex-shrink: 0;
+  transition: background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
-
+.nav-icon-btn:hover {
+  border-color: #4b5563;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
 .nav-icon-btn span {
   position: absolute;
   width: 18px;
@@ -92,36 +130,26 @@ body {
   background: #e5e7eb;
   transition: transform 0.18s ease, opacity 0.18s ease, top 0.18s ease;
 }
-
 .nav-icon-btn span:nth-child(1) {
   top: 10px;
 }
-
 .nav-icon-btn span:nth-child(2) {
   top: 15px;
 }
-
 .nav-icon-btn span:nth-child(3) {
   top: 20px;
 }
-
-/* Animación al abrir */
-
 .nav-icon-btn.is-open span:nth-child(1) {
   top: 15px;
   transform: rotate(45deg);
 }
-
 .nav-icon-btn.is-open span:nth-child(2) {
   opacity: 0;
 }
-
 .nav-icon-btn.is-open span:nth-child(3) {
   top: 15px;
   transform: rotate(-45deg);
 }
-
-/* ========== MENÚ DE PROYECTOS (3 rayitas) ========== */
 
 .menu-panel {
   position: absolute;
@@ -136,11 +164,9 @@ body {
   display: none;
   z-index: 20;
 }
-
 .menu-panel.menu-panel-open {
   display: block;
 }
-
 .menu-title {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -148,7 +174,6 @@ body {
   color: #9ca3af;
   margin-bottom: 0.4rem;
 }
-
 .menu-item {
   width: 100%;
   text-align: left;
@@ -159,42 +184,37 @@ body {
   font-size: 0.85rem;
   background: transparent;
   color: #e5e7eb;
+  cursor: pointer;
 }
-
 .menu-item.disabled {
   opacity: 0.6;
   cursor: default;
 }
-
 .menu-item:hover:not(.disabled) {
   background: #020617;
 }
-
 .menu-note {
   margin-top: 0.5rem;
   font-size: 0.75rem;
   color: #9ca3af;
 }
 
-/* ========== CONTENIDO PRINCIPAL ========== */
-
+/* ========== CONTENIDO ========== */
 main {
   padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 2.5rem auto;
 }
-
 .view {
   display: none;
 }
-
 .view-active {
   display: block;
 }
-
 .view h2 {
   font-size: 1.3rem;
   margin-bottom: 0.4rem;
 }
-
 .view-intro {
   color: #d1d5db;
   font-size: 0.9rem;
@@ -202,15 +222,13 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ========== TARJETAS DE MÓDULOS EN INICIO ========== */
-
+/* TARJETAS HOME */
 .home-modulos {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
-
 .home-card {
   position: relative;
   border: none;
@@ -222,9 +240,10 @@ main {
   cursor: pointer;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.18s ease;
+  border: 1px solid #020617;
 }
-
 .home-card::before {
   content: "";
   position: absolute;
@@ -232,61 +251,191 @@ main {
   border-radius: inherit;
   border-left: 5px solid transparent;
 }
-
-/* Colores por tarjeta */
 .home-card-fisio::before {
-  border-color: #d63b3b; /* verde */
+  border-color: #d63b3b;
 }
-
 .home-card-farma::before {
-  border-color: #d4f63b; /* azul */
+  border-color: #d4f63b;
 }
-
+.home-card-micro::before {
+  border-color: #48e7d4;
+}
 .home-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.7);
+  border-color: #1f2937;
 }
-
 .home-card-icon {
   font-size: 2.4rem;
   margin-bottom: 0.4rem;
 }
-
 .home-card-title {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
 }
-
 .home-card-text {
   font-size: 0.82rem;
   color: #d1d5db;
 }
 
-/* ========== SUBNAV FISIOLOGÍA (HORMONAS / VITAMINAS) ========== */
+/* ========== BOTONES GENERALES (APPLE STYLE) ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: #111827;
+  color: #e5e7eb;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.12s ease, border-color 0.18s ease;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
 
-.fisio-subnav {
-  margin: 0.6rem 0 0.4rem;
+/* Botón azul principal */
+.btn-apple {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+  color: #f9fafb;
+  box-shadow: 0 12px 30px var(--apple-blue-shadow);
+}
+.btn-apple:hover:not(:disabled) {
+  background: var(--apple-blue-hover);
+  border-color: var(--apple-blue-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón secundario (borde azul, fondo oscuro) */
+.btn-apple-secondary {
+  background: #020617;
+  border-color: #3b82f6;
+  color: #e5e7eb;
+}
+.btn-apple-secondary:hover:not(:disabled) {
+  background: #0b1220;
+  box-shadow: 0 8px 22px rgba(59, 130, 246, 0.5);
+}
+
+/* Botón claro/translúcido */
+.btn-apple-light {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: #334155;
+  color: #e5e7eb;
+}
+.btn-apple-light:hover:not(:disabled) {
+  background: rgba(148, 163, 184, 0.16);
+  border-color: #4b5563;
+}
+
+/* Botón fantasma */
+.btn-ghost {
+  background: transparent;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: #020617;
+  border-color: #6b7280;
+}
+
+/* ========== TARJETAS GENÉRICAS ========== */
+.card {
+  background: #020617;
+  border-radius: 1rem;
+  border: 1px solid #111827;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
+  position: relative;
 }
-
-.fisio-subtitle {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #9ca3af;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.4rem;
 }
-
-.fisio-tabs {
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.card-body {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+.card-footer {
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed #1f2937;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-/* Tabs de hormonas / vitaminas con estilo Apple en activo */
-.fisio-tab {
+/* Footer de tarjetas con acciones (antibióticos + microorganismos) */
+.card-footer-actions {
+  gap: 0.45rem;
+}
+
+/* Botones con ancho fluido y centrados */
+.card-footer-actions .btn {
+  flex: 1 1 100%;
+  justify-content: center;
+}
+
+/* En pantallas medianas, dos botones por fila quedan preciosos */
+@media (min-width: 768px) {
+  .card-footer-actions .btn {
+    flex: 1 1 calc(50% - 0.45rem);
+  }
+}
+
+
+.cards-empty {
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  background: #020617;
+  border: 1px dashed #1f2937;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+/* ========== ESTILOS DE TABS (COMUNES) ========== */
+.fisio-subnav,
+.micro-subnav {
+  margin: 0.6rem 0 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.fisio-subtitle,
+.micro-subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+.fisio-tabs,
+.micro-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.fisio-tab,
+.micro-tab {
   padding: 0.3rem 0.9rem;
   border-radius: 999px;
   border: 1px solid #1f2937;
@@ -294,51 +443,46 @@ main {
   color: #e5e7eb;
   font-size: 0.8rem;
   cursor: pointer;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.1s ease;
+  transition: background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.12s ease;
 }
-
-.fisio-tab:hover {
+.fisio-tab:hover,
+.micro-tab:hover {
   border-color: #475569;
 }
-
-.fisio-tab-active {
+.fisio-tab-active,
+.micro-tab-active {
   background: var(--apple-blue);
   border-color: var(--apple-blue);
   color: #f9fafb;
   box-shadow: 0 10px 25px var(--apple-blue-shadow);
   transform: translateY(-1px);
 }
-
-/* Panes de fisiología (hormonas / vitaminas) */
-.fisio-pane {
+.fisio-pane,
+.micro-pane {
   display: none;
   margin-top: 0.2rem;
 }
-
-.fisio-pane-active {
+.fisio-pane-active,
+.micro-pane-active {
   display: block;
 }
 
-/* ========== GRID Y TOOLBAR DE HORMONAS / VITAMINAS ========== */
-
+/* ========== FISIOLOGÍA: RESTAURACIÓN TOTAL ========== */
+/* Grid original */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 0.9rem;
 }
 
+/* Toolbar de Fisiología (Buscador + Filtros) */
 .hormonas-toolbar {
   margin: 0.9rem 0 0.7rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
-
 .hormonas-toolbar input {
   width: 100%;
   padding: 0.55rem 0.8rem;
@@ -350,16 +494,15 @@ main {
   font-size: 0.85rem;
 }
 
-.hormonas-toolbar input::placeholder {
-  color: #9ca3af;
-}
-
+/* Contenedor de Filtros (Pills) */
 .hormonas-filtros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  margin-top: 0.2rem;
 }
 
+/* Botones Pill (Filtros) */
 .pill-btn {
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
@@ -370,192 +513,14 @@ main {
   cursor: pointer;
   white-space: nowrap;
 }
-
 .pill-btn.pill-active {
   background: #3b82f6;
   border-color: #3b82f6;
 }
 
-/* ========== TARJETAS DE HORMONAS ========== */
-
-.card-hormona {
-  background: #020617;
-  border-radius: 1rem;
-  border: 1px solid #111827;
-  padding: 0.9rem 1rem;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  position: relative;
-}
-
-/* Borde lateral de color según sistema */
-.card-hormona::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  border-left-width: 4px;
-  border-left-style: solid;
-  border-color: transparent;
-  pointer-events: none;
-}
-
-/* COLORES POR SISTEMA (coinciden con sistemaKey del JS) */
-.card-sistema-digestivo::before {
-  border-color: #f97316; /* naranja */
-}
-.card-sistema-reproductivo::before {
-  border-color: #ec4899; /* rosado */
-}
-.card-sistema-endocrino-metabolico::before {
-  border-color: #a855f7; /* violeta */
-}
-.card-sistema-cardiaco-circulatorio::before {
-  border-color: #ef4444; /* rojo */
-}
-.card-sistema-respiratorio-cardiaco::before {
-  border-color: #38bdf8; /* celeste */
-}
-.card-sistema-renal::before {
-  border-color: #10b981; /* verde */
-}
-.card-sistema-renal-metabolico::before {
-  border-color: #84cc16; /* verde lima */
-}
-.card-sistema-inmunologico::before {
-  border-color: #22c55e; /* verde brillante */
-}
-.card-sistema-nervioso-neuroendocrino::before {
-  border-color: #6366f1; /* azul violeta */
-}
-.card-sistema-oseo-piel::before {
-  border-color: #eab308; /* amarillo */
-}
-
-/* Encabezado tarjeta */
-.card-hormona-header {
-  margin-bottom: 0.3rem;
-}
-
-.card-hormona-nombre {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.card-hormona-sigla {
-  font-size: 0.8rem;
-  color: #9ca3af;
-}
-
-/* Badge sistema */
-.badge-sistema {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 0.2rem;
-  background: #020617;
-  border: 1px solid #1f2937;
-  color: #e5e7eb;
-}
-
-/* Texto de la tarjeta */
-.card-hormona p {
-  font-size: 0.8rem;
-  color: #e5e7eb;
-  line-height: 1.4;
-}
-
-.card-hormona p span {
-  font-weight: 600;
-}
-
-/* Footer: variaciones + afecciones */
-.card-hormona-footer {
-  margin-top: 0.3rem;
-  padding-top: 0.3rem;
-  border-top: 1px dashed #1f2937;
-}
-
-/* ========== TARJETAS DE VITAMINAS ========== */
-
-.card-vitamina {
-  background: #020617;
-  border-radius: 1rem;
-  border: 1px solid #111827;
-  padding: 0.9rem 1rem;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  position: relative;
-}
-
-/* Borde lateral estético igual al de hormonas */
-.card-vitamina::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  border-left-width: 4px;
-  border-left-style: solid;
-  border-color: transparent;
-  pointer-events: none;
-}
-
-/* Conservamos diferenciación por tipo */
-.card-tipo-liposoluble::before {
-  border-color: #f59e0b; /* naranja dorado elegante */
-}
-
-.card-tipo-hidrosoluble::before {
-  border-color: #3b82f6; /* azul vitamina */
-}
-
-.card-vitamina h3 {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.card-vitamina p {
-  font-size: 0.8rem;
-  color: #e5e7eb;
-  line-height: 1.4;
-}
-
-.card-vitamina p strong,
-.card-vitamina p span {
-  font-weight: 600;
-}
-
-
-/* Borde lateral según tipo (lipo/hidro) */
-.card-vitamina::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  border-left-width: 4px;
-  border-left-style: solid;
-  border-color: transparent;
-  pointer-events: none;
-}
-
-.card-tipo-liposoluble::before {
-  border-color: #f59e0b; /* naranja-dorado */
-}
-
-.card-tipo-hidrosoluble::before {
-  border-color: #3b82f6; /* azul */
-}
-
-/* ========== GLOSARIO CLÍNICO ========== */
-
+/* Tarjetas Fisio / Glosario */
+.card-hormona,
+.card-vitamina,
 .card-glosario {
   background: #020617;
   border-radius: 1rem;
@@ -567,8 +532,8 @@ main {
   gap: 0.35rem;
   position: relative;
 }
-
-/* Borde lateral base */
+.card-hormona::before,
+.card-vitamina::before,
 .card-glosario::before {
   content: "";
   position: absolute;
@@ -576,170 +541,86 @@ main {
   border-radius: 1rem;
   border-left-width: 4px;
   border-left-style: solid;
-  border-color: #3b82f6; /* color por defecto */
+  border-color: transparent;
   pointer-events: none;
 }
 
-/* Colores por sistema */
-.card-glosario-sistema-urinario::before {
-  border-color: #cd754c; /* azul */
+/* Colores Fisio */
+.card-sistema-digestivo::before {
+  border-color: #f97316;
 }
-.card-glosario-sistema-digestivo::before {
-  border-color: #16f9d7; /* naranja */
+.card-sistema-reproductivo::before {
+  border-color: #ec4899;
 }
-.card-glosario-sistema-respiratorio::before {
-  border-color: #c2f838; /* celeste */
+.card-sistema-endocrino-metabolico::before {
+  border-color: #a855f7;
 }
-.card-glosario-sistema-cardiovascular::before {
-  border-color: #ef4444; /* rojo */
+.card-sistema-cardiaco-circulatorio::before {
+  border-color: #ef4444;
 }
-.card-glosario-sistema-neurologico::before {
-  border-color: #458dfa; /* azul violeta */
+.card-sistema-respiratorio-cardiaco::before {
+  border-color: #38bdf8;
 }
-.card-glosario-sistema-dermatologico::before {
-  border-color: #d272ea; /* amarillo */
+.card-sistema-renal::before {
+  border-color: #10b981;
 }
-.card-glosario-sistema-sistemico::before {
-  border-color: #22c55e; /* verde brillante */
+.card-sistema-inmunologico::before {
+  border-color: #22c55e;
+}
+.card-sistema-nervioso-neuroendocrino::before {
+  border-color: #6366f1;
+}
+.card-sistema-oseo-piel::before {
+  border-color: #eab308;
+}
+.card-tipo-liposoluble::before {
+  border-color: #f59e0b;
+}
+.card-tipo-hidrosoluble::before {
+  border-color: #3b82f6;
 }
 
-.card-glosario h3 {
+.card-hormona-header {
+  margin-bottom: 0.3rem;
+}
+.card-hormona-nombre {
   font-size: 1rem;
   font-weight: 600;
 }
-
-.card-glosario-meta {
-  font-size: 0.75rem;
-  color: #9ca3af;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.card-glosario-meta span {
-  padding: 0.1rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid #1f2937;
-}
-
-.card-glosario p {
+.card-hormona-sigla {
   font-size: 0.8rem;
+  color: #9ca3af;
+}
+.badge-sistema {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: #020617;
+  border: 1px solid #1f2937;
   color: #e5e7eb;
-  line-height: 1.4;
+  margin-top: 0.2rem;
 }
-
-.card-glosario p strong {
-  font-weight: 600;
-}
-
-.card-glosario details {
+.card-hormona-footer {
   margin-top: 0.3rem;
   padding-top: 0.3rem;
   border-top: 1px dashed #1f2937;
 }
 
-.card-glosario summary {
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: #93c5fd;
-}
-
-/* Toolbar específica (reusa estilo general) */
-.glosario-toolbar {
-  margin-top: 0.9rem;
-}
-
-.glosario-select {
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid #1f2933;
-  background: #020617;
-  color: #f5f5f5;
-  font-size: 0.8rem;
-}
-
-/* ========== TARJETA MICROBIOLOGÍA EN INICIO ========== */
-
-.home-card-micro::before {
-  border-color: #48e7d4; /* cian para microbio */
-}
-
-/* ========== SUBNAV MICROBIOLOGÍA ========== */
-
-.micro-subnav {
-  margin: 0.6rem 0 0.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.micro-subtitle {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #9ca3af;
-}
-
-.micro-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-/* Tabs de agares / caldos / pruebas con Apple blue en activo */
-.micro-tab {
-  padding: 0.3rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid #1f2937;
-  background: #020617;
-  color: #e5e7eb;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.1s ease;
-}
-
-.micro-tab:hover {
-  border-color: #475569;
-}
-
-.micro-tab-active {
-  background: var(--apple-blue);
-  border-color: var(--apple-blue);
-  color: #f9fafb;
-  box-shadow: 0 10px 25px var(--apple-blue-shadow);
-  transform: translateY(-1px);
-}
-
-/* panes micro (por si en el futuro hay más módulos además de agares) */
-.micro-pane {
-  display: none;
-  margin-top: 0.2rem;
-}
-
-.micro-pane-active {
-  display: block;
-}
-
-/* ========== TOOLBAR MICRO (BUSCADOR + FILTROS) ========== */
-
+/* ========== MICROBIOLOGÍA: TOOLBAR & CALCULADORA ========== */
 .micro-toolbar {
-  margin: 0.9rem 0 1.2rem;
+  margin: 0.9rem 0 0.7rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
-
 .micro-toolbar-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
-
 .micro-select {
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
@@ -748,7 +629,6 @@ main {
   color: #f5f5f5;
   font-size: 0.8rem;
 }
-
 .micro-toolbar input {
   width: 100%;
   padding: 0.55rem 0.8rem;
@@ -760,12 +640,7 @@ main {
   font-size: 0.85rem;
 }
 
-.micro-toolbar input::placeholder {
-  color: #9ca3af;
-}
-
-/* ========== CALCULADORA DE MEDIO ========== */
-
+/* Calculadora (ESTILO HORIZONTAL RESTAURADO) */
 .micro-calc {
   margin: 1rem 0 1.2rem;
   padding: 0.9rem 1rem;
@@ -774,7 +649,6 @@ main {
   background: #020617;
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
 }
-
 .micro-calc h3 {
   font-size: 1rem;
   margin-bottom: 0.6rem;
@@ -786,20 +660,17 @@ main {
   gap: 0.7rem;
   align-items: flex-end;
 }
-
 .micro-calc-block {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-
 .micro-calc-block label {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #9ca3af;
 }
-
 .micro-calc-block input,
 .micro-calc-block select {
   padding: 0.45rem 0.6rem;
@@ -808,8 +679,8 @@ main {
   background: #020617;
   color: #f5f5f5;
   font-size: 0.85rem;
+  width: 100%;
 }
-
 .micro-calc-block input:focus,
 .micro-calc-block select:focus {
   outline: none;
@@ -820,70 +691,35 @@ main {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  flex-direction: row;
   gap: 0.4rem;
   flex-wrap: wrap;
 }
 
-/* Botones de calcular medio (general) con azul Apple */
-#btnCalcularMedio,
-#btnCalcularCaldo,
-#btnCalcularPrueba {
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  background: var(--apple-blue);
-  color: #f9fafb;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition:
-    background 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.1s ease;
+/* Todos los botones de calculadora usan el sistema .btn */
+.micro-calc-actions .btn {
+  min-width: 150px;
 }
 
-#btnCalcularMedio:hover,
-#btnCalcularCaldo:hover,
-#btnCalcularPrueba:hover {
-  background: var(--apple-blue-hover);
-  box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 12px 30px var(--apple-blue-shadow);
-  transform: translateY(-1px);
+/* Estados deshabilitados para imprimir */
+#btnImprimirPreparacion:disabled,
+#btnImprimirCaldo:disabled,
+#btnImprimirPrueba:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
 }
+
 
 .micro-calc-result {
   margin-top: 0.7rem;
   font-size: 0.85rem;
   color: #e5e7eb;
+  border-top: 1px dashed #334155;
+  padding-top: 10px;
 }
 
-.micro-calc-result ul {
-  margin: 0.4rem 0 0.3rem;
-  padding-left: 1.1rem;
-}
-
-.micro-calc-result li {
-  margin-bottom: 0.2rem;
-}
-
-.micro-calc-note {
-  font-size: 0.78rem;
-  color: #9ca3af;
-}
-
-/* Mostrar/ocultar campos según modo (sólido / líquido) */
-.calc-solido-opcion {
-  display: block;
-}
-
-.calc-liquido-opcion {
-  display: none;
-}
-
-/* ========== TARJETAS DE AGARES / CALDOS ========== */
-
+/* ========== MICROBIOLOGÍA: TARJETAS (TARGETS) ========== */
 .card-agar {
   background: #020617;
   border-radius: 1rem;
@@ -894,27 +730,102 @@ main {
   flex-direction: column;
   gap: 0.4rem;
   position: relative;
+  border-left: 5px solid transparent;
+}
+.agar-selectivo {
+  border-left-color: var(--color-selectivo);
+}
+.agar-diferencial {
+  border-left-color: var(--color-diferencial);
+}
+.agar-nutritivo {
+  border-left-color: var(--color-nutritivo);
+}
+.agar-enriquecido {
+  border-left-color: var(--color-enriquecido);
+}
+.agar-basico {
+  border-left-color: var(--color-basico);
+}
+.agar-transporte {
+  border-left-color: var(--color-transporte);
 }
 
-/* Borde lateral según si es sólido o líquido */
-.card-agar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* Antibióticos / discos: línea lateral por familia */
+.card-antibio {
+  position: relative;
+  border-left: 5px solid transparent;
+}
+
+/* familiaKey: "quinolona", "betalactamico", "cefalosporina",
+   "aminoglucosido", "tetraciclina" */
+.card-antibio-quinolona {
+  border-left-color: #22d3ee; /* azul cian */
+}
+
+.card-antibio-betalactamico {
+  border-left-color: #fb923c; /* naranja β-lactámicos */
+}
+
+.card-antibio-cefalosporina {
+  border-left-color: #a855f7; /* morado */
+}
+
+.card-antibio-aminoglucosido {
+  border-left-color: #ec4899; /* fucsia */
+}
+
+.card-antibio-tetraciclina {
+  border-left-color: #84cc16; /* verde lima */
+}
+
+/* Microorganismos (atlas bacteriano) */
+.card-microorg {
+  position: relative;
+  border-left: 5px solid transparent;
+}
+
+/* gramKey: "gramnegativo" | "grampositivo" */
+.card-microorg-gramnegativo {
+  border-left-color: #38bdf8; /* azul/celeste Gram - */
+}
+
+.card-microorg-grampositivo {
+  border-left-color: #f97316; /* naranja/rojizo Gram + */
+}
+
+
+/* Caldos: misma estética que agares, con línea lateral por tipo */
+.card-caldo {
+  background: #020617;
   border-radius: 1rem;
-  border-left-width: 4px;
-  border-left-style: solid;
-  border-color: transparent;
-  pointer-events: none;
+  border: 1px solid #111827;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  border-left: 5px solid transparent;
 }
 
-.card-medio-solido::before {
-  border-color: #10b4e1; /* celeste para agar sólido */
+/* Mapeo de tipos de caldo → color */
+.caldo-selectivo {
+  border-left-color: var(--color-selectivo);
 }
 
-.card-medio-liquido::before {
-  border-color: #22c55e; /* verde para caldos */
+.caldo-nutritivo {
+  border-left-color: var(--color-nutritivo);
 }
+
+.caldo-preenriquecimiento {
+  border-left-color: var(--color-enriquecido);
+}
+
+.caldo-basico {
+  border-left-color: var(--color-basico);
+}
+
 
 .card-agar-header {
   display: flex;
@@ -922,32 +833,21 @@ main {
   align-items: flex-start;
   gap: 0.4rem;
 }
-
 .card-agar-nombre {
   font-size: 1rem;
   font-weight: 600;
 }
-
-.card-agar-marca {
+.card-agar-target {
   font-size: 0.8rem;
   color: #9ca3af;
+  margin-top: 2px;
 }
-
-.badge-medio {
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid #1f2937;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #e5e7eb;
+.card-agar-target span {
+  font-style: italic;
+  color: #38bdf8;
+  font-weight: 500;
 }
-
-.card-agar-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-}
+.badge-medio,
 
 .badge-tipo {
   padding: 0.15rem 0.6rem;
@@ -955,35 +855,35 @@ main {
   border: 1px solid #1f2937;
   font-size: 0.7rem;
   color: #e5e7eb;
+  text-transform: uppercase;
 }
-
+.card-agar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
 .card-agar-main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 0.5rem;
   margin-top: 0.2rem;
 }
-
 .agar-item-label {
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: #9ca3af;
 }
-
 .agar-item-value {
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-/* Botones inferiores: ficha técnica / calcular medio */
 .agar-footer-buttons {
   margin-top: 1.3rem;
   display: flex;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
-
-/* Estilo base de los botones inferiores de las tarjetas */
 .agar-footer-buttons button {
   flex: 1;
   padding: 0.55rem 1rem;
@@ -991,186 +891,320 @@ main {
   border: 1px solid #0f172a;
   font-size: 0.9rem;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.1s ease;
-  white-space: nowrap;
 }
-
-/* Botones de FICHA (agares + pruebas) */
-.btn-ficha,
-.btn-ficha-prueba {
+.btn-ficha {
   background: #020617;
   color: #e5e7eb;
+  border: 1px solid #4b5563;
 }
-
-.btn-ficha:hover,
-.btn-ficha-prueba:hover {
-  background: #111827;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-  transform: translateY(-1px);
-}
-
-/* Botones de CALCULAR (agares + pruebas) con azul Apple */
-.btn-calcular-agar,
-.btn-calcular-prueba {
+.btn-calcular-agar {
   background: var(--apple-blue);
   color: #f9fafb;
-  border-color: transparent;
+  border: none;
   font-weight: 600;
 }
 
-.btn-calcular-agar:hover,
-.btn-calcular-prueba:hover {
-  background: var(--apple-blue-hover);
-  box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 14px 30px var(--apple-blue-shadow);
-  transform: translateY(-1px);
-}
-
-/* Detalles técnicos (ocultos por defecto) */
 .card-agar-detalles {
+  display: none;
   margin-top: 0.6rem;
   padding-top: 0.5rem;
   border-top: 1px dashed #1f2937;
   font-size: 0.8rem;
-  line-height: 1.4;
-  display: none;
 }
-
 .card-agar-detalles.activo {
   display: block;
 }
 
-.card-agar-detalles h4 {
-  margin: 0.35rem 0 0.2rem;
-  font-size: 0.85rem;
+/* Pruebas bioquímicas: tarjeta con línea lateral de color */
+.card-prueba {
+  position: relative;
+  border-left: 5px solid transparent;
 }
 
-.card-agar-detalles ul,
-.card-agar-detalles ol {
-  padding-left: 1.1rem;
-  margin-bottom: 0.3rem;
+/* Colores por categoría (puedes ajustar luego) */
+.card-prueba.prueba-fermentacion {
+  border-left-color: #f97316; /* naranja fermentación */
 }
 
-.micro-empty {
-  font-size: 0.85rem;
-  color: #9ca3af;
+.card-prueba.prueba-citrato {
+  border-left-color: #22c55e; /* verde citrato */
 }
 
-/* Botón "Imprimir preparación" */
+.card-prueba.prueba-lisina {
+  border-left-color: #6366f1; /* azul-violeta lisina/aminos */
+}
 
-#btnImprimirPreparacion,
-#btnImprimirCaldo,
-#btnImprimirPrueba {
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: 1px solid #4b5563;
-  background: transparent;
-  color: #e5e7eb;
-  font-size: 0.8rem;
+/* Si luego creas más categorías, les agregas aquí su color:
+   .card-prueba.prueba-oxidasa { border-left-color: ...; } */
+
+
+/* ========== NORMAS GENERALES (ACORDEÓN) ========== */
+.normas-section {
+  margin-bottom: 2rem;
+}
+.norma-card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.norma-card summary {
+  padding: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #e2e8f0;
+  list-style: none;
+  transition: background 0.2s, color 0.2s;
+}
+.norma-card summary::-webkit-details-marker {
+  display: none;
+}
+.norma-card summary:hover {
+  background-color: #1e293b;
+}
+.norma-icono {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+.contenido-norma {
+  padding: 16px;
+  background-color: #020617;
+  border-top: 1px solid #1e293b;
+  color: #cbd5e0;
+  font-size: 0.9rem;
+}
+.video-container video,
+.img-norma {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+.btn-imprimir-norma {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.85rem;
 }
 
-#btnImprimirPreparacion:disabled,
-#btnImprimirCaldo:disabled {
-  opacity: 0.4;
-  cursor: default;
+/* Flechita de acordeón */
+.norma-card summary::after {
+  content: "▾";
+  font-size: 0.9rem;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+.norma-card[open] summary::after {
+  transform: rotate(-180deg);
 }
 
-
-#btnImprimirPreparacion:not(:disabled):hover,
-#btnImprimirCaldo:not(:disabled):hover,
-#btnImprimirPrueba:not(:disabled):hover {
-  border-color: var(--apple-blue);
-  background: rgba(0, 122, 255, 0.15);
-  box-shadow: 0 0 0 1px var(--apple-blue),
-              0 8px 20px rgba(0, 122, 255, 0.4);
-}
-
-
-/* Área de impresión (invisible normalmente) */
+/* ========== IMPRESIÓN ========== */
 .print-prep {
   display: none;
 }
-
-/* ESTILOS DE IMPRESIÓN: etiqueta + ficha para PDF */
 @media print {
-  body {
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
-  }
-
   body * {
     visibility: hidden;
   }
-
-  #printPrep,
-  #printPrep * {
+  .print-prep,
+  .print-prep * {
     visibility: visible;
   }
-
-  #printPrep {
+  .print-prep {
     display: block;
     position: absolute;
-    inset: 0;
-    padding: 12mm;
-    background: #ffffff;
-    color: #000000;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      sans-serif;
-    font-size: 11pt;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10mm;
+    background: white;
+    color: black;
+    font-family: sans-serif;
   }
-
-  .print-label {
-    border: 1px solid #000;
-    padding: 6mm;
-    margin-bottom: 8mm;
+  .pdf-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
   }
-
-  .print-label h1 {
+  .pdf-logo {
     font-size: 18pt;
-    margin: 0 0 3mm;
+    font-weight: bold;
   }
-
-  .print-label p {
-    margin: 1.5mm 0;
+  .pdf-meta {
+    font-size: 9pt;
+    color: #555;
+    text-align: right;
   }
-
-  .print-info h2 {
-    font-size: 14pt;
-    margin: 0 0 3mm;
+  .pdf-agar-name {
+    font-size: 22pt;
+    font-weight: bold;
+    margin: 0;
   }
-
-  .print-info h3 {
+  .pdf-agar-target {
     font-size: 12pt;
-    margin: 3mm 0 1.5mm;
+    font-style: italic;
+    margin-top: 5px;
+  }
+  .pdf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  .pdf-data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px dotted #ccc;
+  }
+  .pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 10pt;
+  }
+  .pdf-table th {
+    text-align: left;
+    border-bottom: 2px solid #000;
+    padding: 5px;
+  }
+  .pdf-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 5px;
+  }
+  .pdf-footer {
+    margin-top: 40px;
+  }
+  .pdf-notes-area {
+    border: 1px dashed #aaa;
+    height: 100px;
+    margin-top: 10px;
   }
 
-  .print-info p,
-  .print-info li {
+  /* ===========================
+     PASAPORTES BIOLÓGICOS (ANTIBIÓTICO + MICRO)
+     =========================== */
+
+  .pasaporte {
+    width: 100%;
+    max-width: 190mm;
+    margin: 0 auto;
+    padding: 15mm 10mm;
+    font-family: sans-serif;
+    font-size: 10pt;
+  }
+
+  .pasaporte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  .pasaporte-header h2 {
+    font-size: 18pt;
+    margin: 0;
+  }
+
+  .pasaporte-header p {
+    margin: 0;
+    font-size: 9pt;
+  }
+
+  .pasaporte-meta {
+    text-align: right;
+    font-size: 9pt;
+  }
+
+  .pasaporte-main,
+  .pasaporte-extra {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .pasaporte-col h3 {
+    margin: 0 0 5px 0;
     font-size: 11pt;
   }
+
+  .pasaporte-col p {
+    margin: 2px 0;
+    line-height: 1.25;
+  }
+
+  /* Bloques de fotos / placeholders */
+  .pasaporte-foto .foto-placeholder {
+    border: 1px dashed #555;
+    height: 55mm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9pt;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .foto-nota {
+    font-size: 8pt;
+    margin-top: 2px;
+    color: #555;
+  }
+
+  /* Tabla estándar de interpretación de halo (antibiótico) */
+  .tabla-interpretacion {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    font-size: 9pt;
+  }
+
+  .tabla-interpretacion th,
+  .tabla-interpretacion td {
+    border: 1px solid #000;
+    padding: 4px 5px;
+  }
+
+  .tabla-interpretacion th {
+    background: #eee;
+  }
+
+  /* Ajustes finos según tipo de pasaporte */
+  .pasaporte-antibio .pasaporte-main {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .pasaporte-micro .pasaporte-main {
+    grid-template-columns: 1.4fr 1fr;
+  }
 }
 
-/* Tarjetas de pruebas bioquímicas: mismo estilo visual que agares */
-.card-prueba::before {
-  border-color: #f97316; /* naranja para pruebas bioquímicas */
+/* Links internos entre módulos de Microbiología */
+.link-interno-micro {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #38bdf8;
+  cursor: pointer;
+  text-decoration: underline;
 }
-
-/* ========== MICROBIOLOGÍA: BOTONES DE FICHAS Y CÁLCULO ========== */
-/* (ya integrados arriba en .agar-footer-buttons y .btn-calcular-*) */
-
-.card-agar-detalles {
-  display: none;
-  margin: 0; /* Asegúrate de que no haya margen extra */
-  padding: 0; /* Elimina cualquier relleno que deje espacio */
-}
-
-.card-agar-detalles.activo {
-  display: block; /* Solo cuando está activa se muestra */
+.link-interno-micro:hover {
+  color: #7dd3fc;
+  text-decoration: none;
 }

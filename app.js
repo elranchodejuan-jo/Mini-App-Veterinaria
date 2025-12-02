@@ -9,18 +9,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // -------- FUNCIÓN PARA CAMBIAR DE VISTA --------
   function showView(viewName) {
+    // Activar sección principal
     views.forEach((v) => {
       v.classList.toggle("view-active", v.id === `view-${viewName}`);
     });
 
+    // Activar botón de navegación superior
     buttons.forEach((btn) => {
       btn.classList.toggle("nav-active", btn.dataset.view === viewName);
     });
 
+    // Actualizar la vista actual en el router global (si existe)
+    if (window.SuiteVet) {
+      window.SuiteVet.currentView = viewName;
+    }
+
     closeMenu();
   }
 
-  // Botones de navegación (solo Inicio por ahora)
+  // -------- REGISTRAR ROUTER GLOBAL SUITE VET --------
+  // Crear objeto global si no existe
+  window.SuiteVet = window.SuiteVet || {};
+
+  // Hacer visible la función showView desde otros módulos
+  window.SuiteVet.showView = showView;
+
+  // (Opcional) Vista inicial guardada
+  window.SuiteVet.currentView = "home";
+
+  // Botones de navegación
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const viewName = btn.dataset.view;

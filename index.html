@@ -11,6 +11,11 @@
   <script src="glosario.js" defer></script>
   <!-- JS de Microbiología -->
   <script src="micro.js" defer></script>
+  <!-- Futuro: módulos específicos -->
+  <!-- Módulo de antibióticos / discos -->
+  <script src="antibio.js" defer></script>
+  <!-- Módulo de microorganismos -->
+  <script src="microorganismo.js" defer></script>
 </head>
 <body>
   <!-- TOPBAR -->
@@ -90,7 +95,7 @@
           <div class="home-card-icon">🧫</div>
           <div class="home-card-title">Microbiología</div>
           <div class="home-card-text">
-            Agares, caldos y cálculo rápido de medios de cultivo.
+            Agares, caldos, pruebas bioquímicas y antibiogramas.
           </div>
         </button>
       </div>
@@ -105,14 +110,86 @@
       </p>
     </section>
 
-        <!-- MICROBIOLOGÍA: AGARES / CALDOS / PRUEBAS -->
+    <!-- MICROBIOLOGÍA: NORMAS + MODULOS -->
     <section id="view-microbiologia" class="view">
       <h2>Microbiología</h2>
       <p class="view-intro">
-        Módulo de agares, caldos y pruebas bioquímicas: buscador, calculadora
-        de medio y fichas técnicas resumidas para preparar tus placas, caldos
-        y reportes de práctica.
+        Módulo de agares, caldos, pruebas bioquímicas, antibióticos y
+        microorganismos: buscador, calculadora de medio, fichas técnicas y
+        guías rápidas para tus prácticas de laboratorio.
       </p>
+
+      <!-- NORMAS GENERALES DE LABORATORIO (SIEMPRE ARRIBA) -->
+      <section id="micro-normas" class="normas-box">
+        <h3>Normas Generales de Laboratorio</h3>
+        <p class="normas-intro">
+          Revisa estas normas antes de trabajar con agares, caldos, pruebas, antibióticos
+          o microorganismos. Se aplican en todas las secciones del módulo.
+        </p>
+
+        <div class="normas-grid">
+          <!-- 1. Autoclave -->
+          <article class="norma-item">
+            <h4>🌡️ Autoclave (El "monstruo" del lab)</h4>
+            <ul>
+              <li>Verifica nivel de agua y que la válvula esté cerrada.</li>
+              <li>Configura 121&nbsp;°C / 15 psi según el protocolo.</li>
+              <li><strong>Pro-tip SUITE VET:</strong> nunca abras si el manómetro no está en <strong>0</strong>.</li>
+            </ul>
+            <button class="btn-apple" data-video="assets/videos/autoclave.mp4">
+              Video: uso del autoclave
+            </button>
+          </article>
+
+          <!-- 2. Pesaje y disolución -->
+          <article class="norma-item">
+            <h4>⚖️ Pesaje y disolución (evitar grumos)</h4>
+            <ul>
+              <li>Hidrata el agar espolvoreando mientras agitas, no vacíes todo de golpe.</li>
+              <li>Distingue entre “disolver en frío” y “llevar a ebullición”.</li>
+            </ul>
+            <button class="btn-apple" data-video="assets/videos/disolucion_agar.mp4">
+              Video: disolución del medio
+            </button>
+          </article>
+
+          <!-- 3. Plaqueo -->
+          <article class="norma-item">
+            <h4>🦠 Plaqueo (servir las placas)</h4>
+            <ul>
+              <li>Sirve siempre cerca del mechero (zona estéril).</li>
+              <li>Evita burbujas pasando brevemente la llama bajo la placa.</li>
+            </ul>
+            <button class="btn-apple" data-video="assets/videos/plaqueo.mp4">
+              Video: servir placas
+            </button>
+          </article>
+
+          <!-- 4. Bioseguridad y desechos -->
+          <article class="norma-item">
+            <h4>⚠️ Bioseguridad y desechos</h4>
+            <ul>
+              <li>Residuos biológicos → bolsa roja / contenedor infectante.</li>
+              <li>Si se rompe una placa contaminada: cubrir con desinfectante, esperar y limpiar con EPP completo.</li>
+            </ul>
+            <button class="btn-apple" data-img="assets/img/bioseguridad_residuos.png">
+              Ver esquema de desechos
+            </button>
+          </article>
+        </div>
+
+        <div class="normas-actions">
+          <button id="btn-print-agares" class="btn-apple-light">
+            Imprimir Guía de Agares (Medios Sólidos)
+          </button>
+          <button id="btn-print-caldos" class="btn-apple-light">
+            Imprimir Guía de Caldos (Medios Líquidos)
+          </button>
+          <button id="btn-print-pruebas" class="btn-apple-light">
+            Imprimir Guía de Pruebas Bioquímicas
+          </button>
+        </div>
+      </section>
 
       <!-- SUBNAV MICRO: MÓDULOS -->
       <div class="micro-subnav">
@@ -126,6 +203,12 @@
           </button>
           <button class="micro-tab" data-micro="pruebas">
             Pruebas bioquímicas
+          </button>
+          <button class="micro-tab" data-micro="antibioticos">
+            Antibióticos / Discos
+          </button>
+          <button class="micro-tab" data-micro="microorganismos">
+            Microorganismos
           </button>
         </div>
       </div>
@@ -186,16 +269,22 @@
             </div>
 
             <div class="micro-calc-block micro-calc-actions">
-              <button id="btnCalcularMedio" type="button">
-                Calcular medio
-              </button>
               <button
-                id="btnImprimirPreparacion"
-                type="button"
-                disabled
+              id="btnCalcularMedio"
+              type="button"
+              class="btn btn-apple"
               >
-                Imprimir preparación
-              </button>
+              Calcular medio
+            </button>
+            <button
+            id="btnImprimirPreparacion"
+            type="button"
+            class="btn btn-apple-light"
+            disabled
+            >
+            Imprimir preparación
+          </button>
+
             </div>
           </div>
 
@@ -258,16 +347,22 @@
             </div>
 
             <div class="micro-calc-block micro-calc-actions">
-              <button id="btnCalcularCaldo" type="button">
-                Calcular medio
-              </button>
               <button
-                id="btnImprimirCaldo"
-                type="button"
-                disabled
+              id="btnCalcularCaldo"
+              type="button"
+              class="btn btn-apple"
               >
-                Imprimir preparación
-              </button>
+              Calcular medio
+            </button>
+            <button
+            id="btnImprimirCaldo"
+            type="button"
+            class="btn btn-apple-light"
+            disabled
+            >
+            Imprimir preparación
+          </button>
+
             </div>
           </div>
 
@@ -282,11 +377,12 @@
         </div>
       </div>
 
-            <!-- PANE: PRUEBAS BIOQUÍMICAS -->
+      <!-- PANE: PRUEBAS BIOQUÍMICAS -->
       <div id="micro-pruebas" class="micro-pane">
         <h3>Pruebas bioquímicas (TSI, Citrato, LIA, etc.)</h3>
         <p class="view-intro">
-          Fichas de pruebas.
+          Fichas de pruebas bioquímicas y medios asociados para identificar
+          bacilos Gram negativos y otros microorganismos.
         </p>
 
         <!-- BUSCADOR + FILTRO POR CATEGORÍA -->
@@ -341,16 +437,22 @@
 
             <!-- Botones de acción -->
             <div class="micro-calc-block micro-calc-actions">
-              <button id="btnCalcularPrueba" type="button">
-                Calcular medio
-              </button>
               <button
-                id="btnImprimirPrueba"
-                type="button"
-                disabled
+              id="btnCalcularPrueba"
+              type="button"
+              class="btn btn-apple"
               >
-                Imprimir preparación
-              </button>
+              Calcular medio
+            </button>
+            <button
+            id="btnImprimirPrueba"
+            type="button"
+            class="btn btn-apple-light"
+            disabled
+            >
+            Imprimir preparación
+          </button>
+
             </div>
           </div>
 
@@ -365,12 +467,94 @@
         </div>
       </div>
 
+      <!-- PANE: ANTIBIÓTICOS / DISCOS -->
+      <div id="micro-antibioticos" class="micro-pane">
+        <h3>Antibióticos y discos de antibiograma</h3>
+        <p class="view-intro">
+          Tarjetas de fármacos y discos para antibiogramas: nombre, sigla del disco,
+          familia, mecanismo de acción, tipo de acción y conexión con microorganismos
+          y agares para antibiograma (por ejemplo, Mueller Hinton).
+        </p>
 
+        <!-- BUSCADOR + FILTROS -->
+        <div class="micro-toolbar">
+          <div class="micro-toolbar-row">
+            <select id="filtroFamiliaAntibio" class="micro-select">
+              <option value="">Todas las familias</option>
+              <option value="betalactamico">β-lactámicos</option>
+              <option value="glicopeptido">Glicopéptidos</option>
+              <option value="aminoglucosido">Aminoglucósidos</option>
+              <option value="tetraciclina">Tetraciclinas</option>
+              <option value="quinolona">Fluoroquinolonas</option>
+              <option value="fenicol">Fenicoles</option>
+            </select>
+            <select id="filtroAccionAntibio" class="micro-select">
+              <option value="">Todos los tipos de acción</option>
+              <option value="bactericida">Bactericida</option>
+              <option value="bacteriostatico">Bacteriostático</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            id="searchAntibio"
+            placeholder="Buscar por nombre, sigla del disco o mecanismo..."
+          />
+        </div>
+
+        <!-- TARJETAS DE ANTIBIÓTICOS -->
+        <div id="antibioCards" class="cards-grid">
+          <!-- Se llenará desde antibio.js / micro.js -->
+        </div>
+      </div>
+
+      <!-- PANE: MICROORGANISMOS -->
+      <div id="micro-microorganismos" class="micro-pane">
+        <h3>Microorganismos (atlas bacteriano)</h3>
+        <p class="view-intro">
+          Fichas de bacterias de interés clínico y de laboratorio: Gram, morfología,
+          sistema afectado, reservorio, pruebas bioquímicas clave y relación con
+          agares, caldos y antibióticos.
+        </p>
+
+        <!-- BUSCADOR + FILTROS -->
+        <div class="micro-toolbar">
+          <div class="micro-toolbar-row">
+            <select id="filtroGramMicroorg" class="micro-select">
+              <option value="">Todos los Gram</option>
+              <option value="grampositivo">Gram positivo</option>
+              <option value="gramnegativo">Gram negativo</option>
+            </select>
+            <select id="filtroMorfologiaMicroorg" class="micro-select">
+              <option value="">Todas las morfologías</option>
+              <option value="coco">Cocos</option>
+              <option value="bacilo">Bacilos</option>
+            </select>
+            <select id="filtroSistemaMicroorg" class="micro-select">
+              <option value="">Todos los sistemas</option>
+              <option value="digestivo">Digestivo</option>
+              <option value="urinario">Urinario</option>
+              <option value="respiratorio">Respiratorio</option>
+              <option value="sistemico">Sistémico</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            id="searchMicroorg"
+            placeholder="Buscar por nombre científico, Gram, morfología o enfermedad..."
+          />
+        </div>
+
+        <!-- TARJETAS DE MICROORGANISMOS -->
+        <div id="microorgCards" class="cards-grid">
+          <!-- Se llenará desde microorganismo.js / micro.js -->
+        </div>
+      </div>
 
       <!-- ÁREA OCULTA PARA IMPRESIÓN (PDF/ETIQUETA) -->
       <div id="printPrep" class="print-prep"></div>
     </section>
-
 
     <!-- FISIOLOGÍA: SUBPANELES HORMONAS / VITAMINAS / GLOSARIO -->
     <section id="view-fisiologia" class="view">
