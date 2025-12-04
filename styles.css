@@ -1368,7 +1368,43 @@ main {
   .pasaporte-micro .pasaporte-main {
     grid-template-columns: 1.4fr 1fr;
   }
+  .micro-guide-footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    margin-top: 22px;
+    align-items: flex-end; /* QR se baja hacia la esquina inferior */
+  }
+
+  .micro-guide-notes p {
+    margin: 0 0 4px 0;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+
+  .micro-guide-notes-box {
+    border: 1px dashed #999;
+    min-height: 200px;    /* alto del recuadro para escribir */
+  }
+
+  .micro-guide-qr {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .micro-guide-qr-box {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* por si el QR se genera como <img> o <canvas> */
+  .micro-guide-qr-box img,
+  .micro-guide-qr-box canvas {
+    width: 100%;
+    height: 100%;
+  }
 }
+
 
 /* Links internos entre módulos de Microbiología */
 .link-interno-micro {
@@ -1394,4 +1430,5 @@ main {
   border-top: 1px dashed #1f2937;
   padding-top: 0.55rem;
 }
+
 

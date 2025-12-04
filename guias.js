@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Guía rápida de medios sólidos (Agares)",
       subtitulo: "Preparación básica, uso y buenas prácticas.",
       shortLabel: "agares",
+      url: "https://suitevet.app/microbiologia/calculadora?guia=agares",
       objetivo:
         "Ofrecer una referencia rápida para la preparación y uso correcto de agares en prácticas de microbiología veterinaria.",
       usos: [
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Guía rápida de medios líquidos (Caldos)",
       subtitulo: "Enriquecimiento, transporte y pruebas en tubo.",
       shortLabel: "caldos",
+      url: "https://suitevet.app/microbiologia/calculadora?guia=caldos",
       objetivo:
         "Resumir el uso de caldos como medios de enriquecimiento, transporte y observación de crecimiento microbiano.",
       usos: [
@@ -52,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Guía rápida de Pruebas Bioquímicas",
       subtitulo: "Lectura, tiempos críticos y control de calidad.",
       shortLabel: "pruebas bioquímicas",
+      url: "https://suitevet.app/microbiologia/calculadora?guia=pruebas",
       objetivo:
         "Guiar la correcta interpretación y manejo de pruebas bioquímicas para identificación bacteriana.",
       usos: [
@@ -74,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Guía rápida de tipos de siembra en placa",
       subtitulo: "Aislamiento, estriado y distribución uniforme.",
       shortLabel: "tipos de siembra",
+      url: "https://suitevet.app/microbiologia/calculadora?guia=siembras",
       objetivo:
         "Resumir las principales técnicas de siembra en placa para obtener cultivos útiles y legibles.",
       usos: [
@@ -96,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Guía rápida de preparación de antibiogramas",
       subtitulo: "Estandarización del inóculo y lectura de halos.",
       shortLabel: "antibiogramas",
+      url: "https://suitevet.app/microbiologia/calculadora?guia=antibiogramas",
       objetivo:
         "Proporcionar una referencia rápida para estandarizar la preparación y lectura de antibiogramas por difusión en disco.",
       usos: [
@@ -117,72 +122,93 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function renderMicroGuide(tipo) {
-    const cfg = microGuiaConfig[tipo];
-    if (!cfg) return;
+  const cfg = microGuiaConfig[tipo];
+  if (!cfg) return;
 
-    const now = new Date();
-    const fecha = now.toLocaleDateString("es-EC");
-    const hora = now.toLocaleTimeString("es-EC", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+  const now = new Date();
+  const fecha = now.toLocaleDateString("es-EC");
+  const hora = now.toLocaleTimeString("es-EC", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
 
-    const usosHtml = cfg.usos.map((u) => `<li>${u}</li>`).join("");
-    const tipsHtml = cfg.tips.map((t) => `<li>${t}</li>`).join("");
-    const erroresHtml = cfg.errores.map((e) => `<li>${e}</li>`).join("");
+  const usosHtml = cfg.usos.map((u) => `<li>${u}</li>`).join("");
+  const tipsHtml = cfg.tips.map((t) => `<li>${t}</li>`).join("");
+  const erroresHtml = cfg.errores.map((e) => `<li>${e}</li>`).join("");
 
-    printPrep.innerHTML = `
-      <article class="micro-guide">
-        <header class="micro-guide-header">
-          <div>
-            <h1 class="micro-guide-title">${cfg.titulo}</h1>
-            <p class="micro-guide-subtitle">${cfg.subtitulo}</p>
-          </div>
-          <div class="micro-guide-meta">
-            <p>SUITE VET · Módulo de Microbiología</p>
-            <p>${fecha} · ${hora}</p>
-          </div>
-        </header>
+  // 👉 SOLO HTML AQUÍ DENTRO
+  printPrep.innerHTML = `
+    <article class="micro-guide">
+      <header class="micro-guide-header">
+        <div>
+          <h1 class="micro-guide-title">${cfg.titulo}</h1>
+          <p class="micro-guide-subtitle">${cfg.subtitulo}</p>
+        </div>
+        <div class="micro-guide-meta">
+          <p>SUITE VET · Módulo de Microbiología</p>
+          <p>${fecha} · ${hora}</p>
+        </div>
+      </header>
 
-        <section class="micro-guide-body">
-          <div class="micro-guide-col">
-            <h2>Objetivo de la guía</h2>
-            <p>${cfg.objetivo}</p>
+      <section class="micro-guide-body">
+        <div class="micro-guide-col">
+          <h2>Objetivo de la guía</h2>
+          <p>${cfg.objetivo}</p>
 
-            <h2>Usos principales</h2>
-            <ul>
-              ${usosHtml}
-            </ul>
-          </div>
+          <h2>Usos principales</h2>
+          <ul>
+            ${usosHtml}
+          </ul>
+        </div>
 
-          <div class="micro-guide-col">
-            <h2>Tips rápidos</h2>
-            <ul>
-              ${tipsHtml}
-            </ul>
+        <div class="micro-guide-col">
+          <h2>Tips rápidos</h2>
+          <ul>
+            ${tipsHtml}
+          </ul>
 
             <h2>Errores frecuentes</h2>
             <ul>
               ${erroresHtml}
             </ul>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <footer class="micro-guide-footer">
-          <div class="micro-guide-notes">
-            Notas del laboratorio (observaciones propias):
-          </div>
-          <div class="micro-guide-qr">
-            <div class="micro-guide-qr-box">
-              Aquí irá el QR hacia la calculadora de ${cfg.shortLabel}
-            </div>
-          </div>
-        </footer>
-      </article>
-    `;
+      <footer class="micro-guide-footer">
+        <div class="micro-guide-notes">
+          <p>Notas del laboratorio (observaciones propias):</p>
+          <div class="micro-guide-notes-box"></div>
+        </div>
+        <div class="micro-guide-qr">
+          <div class="micro-guide-qr-box" id="micro-guide-qr-box"></div>
+        </div>
+      </footer>
+    </article>
+  `; // 👈 AQUÍ CIERRA EL TEMPLATE STRING (backtick) Y EL ;
 
-    window.print();
+  // 👉 DESPUÉS de cerrar el template, va el JS para el QR
+  const qrBox = document.getElementById("micro-guide-qr-box");
+
+  if (qrBox) {
+    qrBox.innerHTML = "";
+
+    if (cfg.url) {
+      new QRCode(qrBox, {
+        text: cfg.url,
+        width: 90,
+        height: 90,
+        margin: 0
+      });
+    } else {
+      qrBox.textContent = "QR pendiente";
+    }
   }
+
+  // Pequeño delay para que el QR se pinte antes de imprimir
+  setTimeout(() => {
+    window.print();
+  }, 100);
+}
 
   const buttonMap = [
     ["btn-print-agares", "agares"],
